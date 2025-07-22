@@ -1,0 +1,237 @@
+::selection {
+    color: rgb(0, 136, 255);
+    background-color: #fff;
+}
+
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+  background-image: url('../images/bgc_login.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: center center; */
+  position: relative;
+}
+
+.container {
+    width: 60rem;
+    height: 44rem;
+    color: #fff;
+    /* background-color: #fff; */
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    /* border-radius: 8px; */
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.045);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.032);
+    padding: 10px;
+}
+
+.inputlabel {
+    position: absolute;
+}
+
+#username {
+    top: 7rem;
+    right: 6rem;
+}
+
+#UserName {
+    top: 9rem;
+    left: 5rem;
+    width: 50rem;
+    height: 2rem;
+    outline: none;
+    border: none;
+    background-color: #ffffff00;
+    color: white;
+    border-bottom:1px solid #ffffff;
+}
+
+#UserName:focus{
+    border-bottom: 1px solid rgb(0, 242, 255);
+}
+
+#password {
+    top: 13rem;
+    right: 6rem;
+}
+
+#Password {
+    top: 15rem;
+    left: 5rem;
+    width: 50rem;
+    height: 2rem;
+    outline: none;
+    border: none;
+    background-color: #ffffff00;
+    color: white;
+    border-bottom:1px solid #ffffff;
+}
+
+#Password:focus{
+    border-bottom: 1px solid rgb(0, 242, 255);
+}
+
+#phonenumber {
+    top: 19rem;
+    right: 6rem;
+}
+
+#phoneNumber {
+    top: 21rem;
+    left: 5rem;
+    width: 50rem;
+    height: 2rem;
+    outline: none;
+    border: none;
+    background-color: #ffffff00;
+    color: white;
+    border-bottom:1px solid #ffffff;
+}
+
+#phoneNumber:focus{
+    border-bottom: 1px solid rgb(0, 242, 255);
+}
+
+#acceptcode {
+    top: 25rem;
+    right: 6rem;
+}
+
+#acceptCode {
+    top: 27rem;
+    left: 5rem;
+    width: 50rem;
+    height: 2rem;
+    outline: none;
+    border: none;
+    background-color: #ffffff00;
+    color: white;
+    border-bottom:1px solid #ffffff;
+}
+
+#acceptCode:focus{
+    border-bottom: 1px solid rgb(0, 242, 255);
+}
+
+#invitingcode {
+    top: 31rem;
+    right: 6rem;
+}
+
+#invitingCode {
+    top: 33rem;
+    left: 5rem;
+    width: 50rem;
+    height: 2rem;
+    outline: none;
+    border: none;
+    background-color: #ffffff00;
+    color: white;
+    border-bottom:1px solid #ffffff;
+}
+
+#invitingCode:focus{
+    border-bottom: 1px solid rgb(0, 242, 255);
+}
+
+#btn {
+    top: 38rem;
+    right: 6rem;
+    width: 50rem;
+    height: 3rem;
+    background-color: rgb(0, 255, 251);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+#btn:hover {
+    background-color: rgb(0, 179, 176);
+}
+
+.img {
+    position: absolute;
+    left: 5rem;
+    top: 26rem;
+    width: 6rem;
+}
+
+.size-6 {
+    color: white;
+    position: absolute;
+    left: 11.5rem;
+    top: 26.5rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.Signin {
+    position: absolute;
+    bottom: 1rem;
+    right: 28rem;
+}
+
+.size-7 {
+    color: #fff;
+    width: 1.5rem;
+    position: absolute;
+    top: 15.5rem;
+    left: 5rem;
+    cursor: pointer;
+}
+
+#userN {
+    position: absolute;
+    color: red;
+    right: 6rem;
+    top: 11.5rem;
+    display: none;
+}
+
+#Pass {
+    position: absolute;
+    color: red;
+    right: 6rem;
+    top: 17.5rem;
+    display: none;
+}
+
+#Phon {
+    position: absolute;
+    color: red;
+    right: 6rem;
+    top: 23.5rem;
+    display: none;
+}
+
+#Accept {
+    position: absolute;
+    color: red;
+    right: 6rem;
+    top: 29.5rem;
+    display: none;
+}
+
+#invit {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    right: 6rem;
+    top: 35.5rem;
+    display: none;
+}
