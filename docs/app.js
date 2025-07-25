@@ -69,5 +69,5 @@ Inviting.addEventListener('keyup', (checking) => {
 })
 
 button.addEventListener('click', (event) => {
-    window.location.href = '../main/main.html'
+    window.location.href = 'signin/main/main.html'
 })
