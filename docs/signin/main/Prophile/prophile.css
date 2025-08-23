@@ -1,18 +1,131 @@
+::selection {
+    color: rgb(0, 98, 184);
+    background-color: #fff;
+}
+
 * {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serifz;
 }
 
 body {
     /* background-color: #1c0631; */
-    background-image: url('../img/bgc_login.jpg');
+    background-image: url('../images/bgc_login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 200vh;
+    height: 215vh;
     color: white;
     position: relative;
 }
 
-.Welcomtxt {
-    text-align: center;
-    padding-top: 10px;
+.head {
+    width: 36%;
+    height: 4rem;
+    display: flex;
+    position: fixed;
+    /*background-color: #fff;
+    *//*margin-left: auto;
+    margin-right: auto;
+    *//*width: fit-content;
+    */bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    z-index: 9999;
+    border-radius: 30px;
+    backdrop-filter: blur(20px);
+    background-color: rgba(0, 251, 255, 0.16);
+    border: 1px solid rgba(0, 255, 195, 0.57);
+    box-shadow: 1px 1px 15px rgb(107, 107, 107);
+    color: white;
+    justify-content: space-between;
+}
+
+.team {
+    position: relative;
+}
+
+.team-txt {
+    position: absolute;
+    bottom: -16px;
+    padding-left: 10px;
+}
+
+.home {
+    width: 3.5rem;
+    /* color: #00ddff; */
+    cursor: pointer;
+    margin-bottom: -5px;
+    margin-top: -10px;
+}
+
+.home:hover {
+    /* box-shadow: 1px 1px 40px rgb(0, 191, 255); */
+    color: #00b3ff;
+}
+
+.headerIcones {
+    width: 2.5rem;
+    color: #c0c0c0;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.Prophile {
+    color: #00ddff;
+}
+
+.Box-1 {
+    width: 80%;
+    height: 26rem;
+    /*background-color: black;
+    */margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    border: 1px solid #00ddff;
+    border-radius: 10px;
+}
+
+.Table-1 {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.Span {
+    margin-top: 1.1rem;
+}
+
+.Hr {
+    width: 98%;
+}
+
+.Box-2 {
+    width: 80%;
+    height: 59rem;
+    /*background-color: black;*/
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    border: 2px solid #00ddff;
+    border-radius: 10px;
+}
+
+.Lg {
+    color: #00ddff;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.btn {
+    width: 80%;
+    height: 3.5rem;
+    margin-left: 9.5rem;
+    margin-top: 1.5rem;
+    background-color: #00ece4;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
 }
