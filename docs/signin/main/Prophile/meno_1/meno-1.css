@@ -1,0 +1,146 @@
+::selection {
+    color: rgb(0, 136, 255);
+    background-color: #fff;
+}
+
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serifz;
+}
+
+body {
+    /* background-color: #1c0631; */
+    background-image: url('../bgc_login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 200vh;
+    color: white;
+    position: relative;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #bde2ff;
+    border-radius: 8px;
+    font-size: 30px;
+    color: black;
+}
+
+.back {
+    width: 2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.Span {
+    margin-right: 2rem;
+    margin-top: 0.8rem;
+}
+
+.container {
+    width: 70%;
+    height: 18rem;
+    margin-top: 7rem;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #e1e1e1;
+    color: black;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.cadr-1 {
+    width: 90%;
+    height: 4rem;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 8px;
+    border: 1px solid rgb(0, 136, 255);
+    background-color: #00ccff38;
+    cursor: pointer;
+}
+.cadr-2 {
+    width: 90%;
+    height: 4rem;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 8px;
+    /* border: 1px solid rgb(0, 136, 255); */
+    background-color: #d0d0d0db;
+    padding-top: 0.7rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+.container2 {
+    width: 70%;
+    height: 20rem;
+    margin-top: 5rem;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #e1e1e1;
+    color: black;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.Hr {
+    width: 80%;
+    color: rgb(161, 161, 161);
+}
+
+.btns {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btns1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btns2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    width: 9rem;
+    height: 4rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: #00b7ff;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0091ff;
+}
+
+.Button {
+    width: 70%;
+    height: 4rem;
+    margin-top: 2rem;
+    border: none;
+    outline: none;
+    background-color: #00d9ff;
+    margin-left: 14.3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
