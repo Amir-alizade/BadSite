@@ -68,6 +68,63 @@ Inviting.addEventListener('keyup', (checking) => {
     }, 4000);
 })
 
-button.addEventListener('click', (event) => {
-    window.location.href = 'signin/main/main.html'
-})
+// button.addEventListener('click', (event) => {
+//     window.location.href = 'signin/main/main.html'
+// })
+
+
+
+document.getElementById('btn').addEventListener('click', async (event) => {
+  event.preventDefault();
+
+  const payload = {
+    username: document.getElementById('UserName').value.trim(),
+    password: document.getElementById('Password').value.trim(),
+    phone: document.getElementById('phoneNumber').value.trim()
+  };
+
+  try {
+    const res = await fetch('http://localhost:3000/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    alert(data.message);
+    if (data.success) {
+      window.location.href = 'signin/signin.html'; // بعد از ثبت‌نام موفق، بفرستش به صفحه ورود
+    }
+  } catch (err) {
+    alert('خطا در اتصال به سرور');
+  }
+});
+
+
+
+document.getElementById('btn').addEventListener('click', async (event) => {
+  event.preventDefault();
+
+  const payload = {
+    username: document.getElementById('UserName').value,
+    password: document.getElementById('Password').value
+  };
+
+  try {
+    const res = await fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      alert(data.message);
+      window.location.href = 'signin/main/main.html';
+    } else {
+      alert(data.message);
+    }
+  } catch (err) {
+    alert('خطا در اتصال به سرور');
+  }
+});

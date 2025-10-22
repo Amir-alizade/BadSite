@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    container_name: greensmart-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: greensmart-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    container_name: greensmart-frontend
+    ports:
+      - "8080:80"
+
+volumes:
+  mongo-data:
