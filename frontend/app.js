@@ -11,80 +11,58 @@ let spanInvit = $.getElementById('invit');
 let Inviting = $.getElementById('invitingCode');
 let button = $.getElementById('btn');
 
+// اعتبارسنجی‌ها
+UserName.addEventListener('keyup', () => {
+  spanUserN.style.display = UserName.value.length < 8 ? 'block' : 'none';
+  UserName.style.borderBottom = UserName.value.length < 8
+    ? '1px solid rgba(255, 0, 0, 1)'
+    : '1px solid rgba(29, 159, 0, 1)';
+});
 
+Password.addEventListener('keyup', () => {
+  spanPass.style.display = Password.value.length < 8 ? 'block' : 'none';
+  Password.style.borderBottom = Password.value.length < 8
+    ? '1px solid rgba(255, 0, 0, 1)'
+    : '1px solid rgba(29, 159, 0, 1)';
+});
 
+PhonNumber.addEventListener('keyup', () => {
+  const phoneN = Number(PhonNumber.value);
+  const isValid = PhonNumber.value.length === 11 && !isNaN(phoneN);
+  spanPhon.style.display = isValid ? 'none' : 'block';
+  PhonNumber.style.borderBottom = isValid
+    ? '1px solid rgba(29, 159, 0, 1)'
+    : '1px solid rgba(255, 0, 0, 1)';
+});
 
-UserName.addEventListener('keyup', (event) => {
-    if (UserName.value.length < 8) {
-        spanUserN.style.display = 'block'
-        // UserName.style.border = '1px solid #ff0000ff'
-        UserName.style.borderBottom = '1px solid rgba(255, 0, 0, 1)';
-    } else {
-        spanUserN.style.display = 'none'
-        // UserName.style.border = '1px solid #1d9f00ff'
-        UserName.style.borderBottom = '1px solid rgba(29, 159, 0, 1)';
-    }
-})
+acceptCode.addEventListener('keyup', () => {
+  const isCorrect = acceptCode.value === '7388';
+  spanAccept.style.display = isCorrect ? 'none' : 'block';
+  acceptCode.style.borderBottom = isCorrect
+    ? '1px solid rgba(29, 159, 0, 1)'
+    : '1px solid rgba(255, 0, 0, 1)';
+});
 
-Password.addEventListener('keyup', (event) => {
-    if (Password.value.length < 8) {
-        spanPass.style.display = 'block'
-        Password.style.borderBottom = '1px solid rgba(255, 0, 0, 1)';
-    } else {
-        spanPass.style.display = 'none'
-        Password.style.borderBottom = '1px solid rgba(29, 159, 0, 1)';
-    }
-})
+Inviting.addEventListener('keyup', () => {
+  spanInvit.style.display = 'block';
+  setTimeout(() => {
+    spanInvit.style.display = 'none';
+  }, 4000);
+});
 
-let phoneN = Number(PhonNumber.value)
-
-PhonNumber.addEventListener('keyup', (event) => {
-    if (PhonNumber.value.length < 11) {
-        spanPhon.style.display = 'block'
-        PhonNumber.style.borderBottom = '1px solid rgba(255, 0, 0, 1)';
-    } else if (typeof phoneN === NaN) {
-        spanPhon.style.display = 'block'
-        PhonNumber.style.borderBottom = '1px solid rgba(255, 0, 0, 1)';
-    } else {
-        spanPhon.style.display = 'none'
-        PhonNumber.style.borderBottom = '1px solid rgba(29, 159, 0, 1)';
-    }
-})
-
-acceptCode.addEventListener('keyup', (Event) => {
-    if (acceptCode.value == 7388) {
-        spanAccept.style.display = 'none'
-        acceptCode.style.borderBottom = '1px solid rgba(29, 159, 0, 1)';
-    } else {
-        spanAccept.style.display = 'block'
-        acceptCode.style.borderBottom = '1px solid rgba(255, 0, 0, 1)';
-    }
-})
-
-Inviting.addEventListener('keyup', (checking) => {
-    spanInvit.style.display = 'block'
-    setTimeout(() => {
-    spanInvit.style.display = 'none'
-    }, 4000);
-})
-
-// button.addEventListener('click', (event) => {
-//     window.location.href = 'signin/main/main.html'
-// })
-
-
-
-document.getElementById('btn').addEventListener('click', async (event) => {
+// ثبت‌نام
+button.addEventListener('click', async (event) => {
   event.preventDefault();
 
   const payload = {
-    username: document.getElementById('UserName').value.trim(),
-    password: document.getElementById('Password').value.trim(),
-    phone: document.getElementById('phoneNumber').value.trim()
+    username: UserName.value.trim(),
+    password: Password.value.trim(),
+    phone: PhonNumber.value.trim(),
+    inviteCode: Inviting.value.trim()
   };
 
   try {
-    const res = await fetch('http://localhost:3000/api/register', {
+    const res = await fetch('/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -92,37 +70,8 @@ document.getElementById('btn').addEventListener('click', async (event) => {
 
     const data = await res.json();
     alert(data.message);
-    if (data.success) {
-      window.location.href = 'signin/signin.html'; // بعد از ثبت‌نام موفق، بفرستش به صفحه ورود
-    }
-  } catch (err) {
-    alert('خطا در اتصال به سرور');
-  }
-});
-
-
-
-document.getElementById('btn').addEventListener('click', async (event) => {
-  event.preventDefault();
-
-  const payload = {
-    username: document.getElementById('UserName').value,
-    password: document.getElementById('Password').value
-  };
-
-  try {
-    const res = await fetch('http://localhost:3000/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-
-    const data = await res.json();
-    if (data.success) {
-      alert(data.message);
-      window.location.href = 'signin/main/main.html';
-    } else {
-      alert(data.message);
+    if (data.message.includes('success')) {
+      window.location.href = 'signin/signin.html';
     }
   } catch (err) {
     alert('خطا در اتصال به سرور');

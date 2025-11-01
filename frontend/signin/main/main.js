@@ -4,6 +4,7 @@ let Languege = $.getElementById('Languege');
 let Homeinheader = $.getElementById('Home');
 let More = $.getElementById('More');
 let Proph = $.getElementById('Proph');
+let Apps = $.getElementById('Apps');
 
 
 
@@ -26,4 +27,9 @@ NotifIcone.addEventListener('click', (event) => {
 
 Proph.addEventListener('click', () => {
     window.location.href = 'Prophile/prophile.html'
+})
+
+Apps.addEventListener('click', () => {
+    window.location.href = 'App/app-page.html'
+    
 })

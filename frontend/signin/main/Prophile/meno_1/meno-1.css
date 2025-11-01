@@ -12,7 +12,7 @@ body {
     background-image: url('../bgc_login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 200vh;
+    height: 120vh;
     color: white;
     position: relative;
 }
@@ -105,7 +105,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 }
 
 .btns2 {

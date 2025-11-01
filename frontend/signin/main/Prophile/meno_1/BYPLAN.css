@@ -1,0 +1,46 @@
+::selection {
+    color: rgb(0, 136, 255);
+    background-color: #fff;
+}
+
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serifz;
+}
+
+body {
+    /* background-color: #1c0631; */
+    background-image: url('../bgc_login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90vh;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+.container {
+    width: 70%;
+    height: 50vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8rem;
+    border-radius: 10px;
+    border: 2px solid #00bfff;
+    background-color: #dbdbdb;
+    text-align: center;
+}
+
+.address-2 {
+    margin-top: 3rem;
+}
+
+.box-1 {
+    width: 35%;
+    height: 2rem;
+    background-color: #00b7ff41;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #00bfff;
+    border-radius: 5px;
+    padding-bottom: 12px;
+}
+
