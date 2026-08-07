@@ -2,29 +2,110 @@ const $ = document;
 let Button = $.getElementById('Btn');
 let m_p = $.getElementById('Main-page');
 let AM = $.getElementById('AddMoney');
+let chargeBtn = $.getElementById('chargeBtn');
+let logoutBtn = $.getElementById('logoutBtn');
+let adminBtn = $.getElementById('adminBtn');
 
 
-Button.addEventListener('click', () => {
-    window.location.href = '../main.html'
-})
-m_p.addEventListener('click', () => {
-    window.location.href = '../main.html'
-})
 
-
-AM.addEventListener('click', () => {
+chargeBtn.addEventListener('click', () => {
     window.location.href = 'meno_1/meno-1.html'
+});
+logoutBtn.addEventListener('click', () => {
+    window.location.href = '../main.html'
 })
 
+adminBtn.addEventListener('click', () => {
+    alert('pleas wate...');
+});
 
 
-let all = ['Amir','Mahdi','mohammad'];
-let user = all.includes('Amir');
-console.log(user);
+// AM.addEventListener('click', () => {
+//     window.location.href = 'meno_1/meno-1.html'
+// })
+
+//=============================
+// دریافت اطلاعات کاربر
+//=============================
+
+async function loadProfile() {
+
+    try {
+
+        const response = await fetch("/api/profile", {
+            credentials: "include"
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+
+            alert("ابتدا وارد حساب شوید.");
+
+            window.location.href = "../signin/signin.html";
+
+            return;
+
+        }
+
+        const user = data.user;
+
+        document.getElementById("profileName").textContent =
+            user.username;
+
+        document.getElementById("profilePhone").textContent =
+            user.phone;
+
+        document.getElementById("profileWallet").textContent =
+            Number(user.wallet).toLocaleString("fa-IR") + " تومان";
+
+        document.getElementById("profileCode").textContent =
+            user.user_code;
+
+        document.getElementById("inviteCode").textContent =
+            user.my_invite_code;
+
+        document.getElementById("profileRole").textContent =
+            user.role === "admin"
+                ? "مدیر سیستم"
+                : "کاربر عادی";
 
 
 
+        // نمایش دکمه ادمین
+
+        const adminBtn =
+            document.getElementById("adminPanel");
+
+        if (user.role === "admin") {
+
+            adminBtn.style.display = "flex";
+
+        }
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert("خطا در دریافت اطلاعات کاربر");
+
+    }
+
+}
+
+loadProfile();
 
 
-// alert('سلام تمام این کادر اول که شامل موجودی و درامد و... هستن همه اونا با اضافه شدن بک اند به پروژه داینامیک و وصل به ولت خواهند شد \nبرای تمام منو ها صفحه های جدا طراحی شده صفحه کیف پول مشکلات ظاهری داشت که بهم ریخته بود لینک نشد تمام منو ها لینک شده و میتونید ببینید  و حتی گزینه حابت شب هم اضافه کردم صفحه های توی منو صفحه اصلی بیس آنها طراحی شده و نیاز به تکمیل دارد ترنسلیت ها تهیه داره میشه و به زودی اونم تکمیل میشه و تمام.')
-// alert('آپدیت بعدی پروژه در ابعاد گوشی ریسپانسیو خواهد شد الان فعلا در سایز لپ تاپ کد نویسی شده دیزاین و همه چیز با سلیقه شما تغییر میکند تغییرات در صفحه هایی که دارید میبینید را اعلام کنید ممنونم.')
+
+// if(adminPanel){
+
+//     adminPanel.addEventListener("click",()=>{
+
+//         // window.location.href="../admin/admin.html";
+//         alert('pleas wate');
+
+//     });
+
+// }

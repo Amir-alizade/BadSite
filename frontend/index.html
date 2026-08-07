@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -26,6 +26,7 @@
         </svg>
 
         <label class="inputlabel" id="phonenumber" for="phoneNumber">شماره موبایل</label><br>
+        <input class="inputlabel" id="phoneNumber" type="tel" placeholder="شماره موبایل خود را وارد کنید">
         <input class="inputlabel" id="phoneNumber" type="number" placeholder="شماره موبایل خود را وارد کنید">
         <span id="Phon">شماره موبایل وارد شده اشتباه است  مجدد بررسی کنید</span>
 
@@ -48,4 +49,150 @@
 
     <script src="app.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ثبت نام</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2 class="welcom_txt">
+
+            زندگی مدرن را همین امروز تجربه کنید!
+
+        </h2>
+
+        <form id="registerForm">
+
+            <!-- Username -->
+
+            <label class="inputlabel" for="username">
+
+                نام کاربری
+
+            </label>
+
+            <input
+                class="inputlabel"
+                id="username"
+                type="text"
+                placeholder="نام کاربری خود را وارد کنید"
+                autocomplete="username">
+
+            <span id="userN">
+
+                نام کاربری باید حداقل ۸ کاراکتر باشد.
+
+            </span>
+
+            <!-- Password -->
+
+            <label class="inputlabel" for="password">
+
+                رمز عبور
+
+            </label>
+
+            <input
+                class="inputlabel"
+                id="password"
+                type="password"
+                placeholder="رمز عبور خود را وارد کنید"
+                autocomplete="new-password">
+
+            <span id="Pass">
+
+                رمز عبور باید حداقل ۸ کاراکتر باشد.
+
+            </span>
+
+            <!-- Phone -->
+
+            <label class="inputlabel" for="phone">
+
+                شماره موبایل
+
+            </label>
+
+            <input
+                class="inputlabel"
+                id="phone"
+                type="tel"
+                maxlength="11"
+                placeholder="09123456789"
+                autocomplete="tel">
+
+            <span id="Phon">
+
+                شماره موبایل معتبر نیست.
+
+            </span>
+
+            <!-- Invite -->
+
+            <label class="inputlabel" for="inviteCode">
+
+                کد دعوت (اختیاری)
+
+            </label>
+
+            <input
+                class="inputlabel"
+                id="inviteCode"
+                type="text"
+                maxlength="11"
+                placeholder="در صورت داشتن وارد کنید">
+
+            <span id="invit">
+
+            </span>
+
+            <button
+                class="inputlabel"
+                id="registerBtn"
+                type="submit">
+
+                ثبت نام
+
+            </button>
+
+        </form>
+
+        <p class="Signin">
+
+            <a
+                href="signin/signin.html"
+                style="
+                    color: rgb(123,123,123);
+                    text-decoration:none;
+                    font-weight:600;
+                ">
+
+                از قبل حساب دارم
+
+            </a>
+
+        </p>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
 </html>

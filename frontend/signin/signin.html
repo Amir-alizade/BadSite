@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -37,4 +37,83 @@
 
     <script src="signin.js"></script>
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود</title>
+
+    <link rel="stylesheet" href="signin.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2 class="welcom_txt">
+        سلام رفیق، خوش اومدی ❤️
+    </h2>
+
+    <!-- نام کاربری -->
+
+    <label class="inputlabel" id="username" for="UserName">
+        نام کاربری
+    </label>
+
+    <input
+        class="inputlabel"
+        id="UserName"
+        type="text"
+        placeholder="نام کاربری">
+
+    <span id="userError">
+        حداقل ۸ کاراکتر
+    </span>
+
+
+    <!-- کد اختصاصی -->
+
+    <label class="inputlabel" id="usercode" for="UserCode">
+        کد اختصاصی
+    </label>
+
+    <input
+        class="inputlabel"
+        id="UserCode"
+        type="text"
+        placeholder="کد اختصاصی خود را وارد کنید">
+
+    <span id="codeError">
+        کد وارد شده صحیح نیست
+    </span>
+
+
+    <button
+        class="inputlabel"
+        id="btn">
+
+        ورود
+
+    </button>
+
+
+    <p class="Signin">
+
+        <a href="../index.html" class="Gsignup">
+
+            ثبت نام نکردم
+
+        </a>
+
+    </p>
+
+</div>
+
+<script src="signin.js"></script>
+
+</body>
+
 </html>

@@ -3,235 +3,404 @@
     background-color: #fff;
 }
 
-* {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
 }
 
-body {
-  background-image: url('signin/bgc_login.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  /* background-position: center center; */
-  position: relative;
+body{
+    background-image:url("signin/bgc_login.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    min-height:100vh;
 }
 
-.container {
-    width: 60rem;
-    height: 44rem;
-    color: #fff;
-    /* background-color: #fff; */
-    margin-right: auto;
-    margin-left: auto;
-    text-align: center;
-    /* border-radius: 8px; */
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.045);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.032);
-    padding: 10px;
+.container{
+
+    position:relative;
+
+    width:min(60rem,95%);
+
+    height:44rem;
+
+    margin:25px auto;
+
+    color:#fff;
+
+    background-color:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:12px;
+
+    padding:10px;
+
+    backdrop-filter:blur(8px);
+
 }
 
-.inputlabel {
-    position: absolute;
+.welcom_txt{
+
+    margin-top:20px;
+
+    text-align:center;
+
 }
 
-#username {
-    top: 7rem;
-    right: 6rem;
+/* ------------------------- */
+
+.inputlabel{
+
+    position:absolute;
+
 }
 
-#UserName {
-    top: 9rem;
-    left: 5rem;
-    width: 50rem;
-    height: 2rem;
-    outline: none;
-    border: none;
-    background-color: #ffffff00;
-    color: white;
-    border-bottom:1px solid #ffffff;
+/* Label Username */
+
+label[for="username"]{
+
+    top:7rem;
+
+    right:6rem;
+
 }
 
-#UserName:focus{
-    border-bottom: 1px solid rgb(0, 242, 255);
+/* Input Username */
+
+#username{
+
+    top:9rem;
+
+    left:5rem;
+
+    width:50rem;
+
+    height:2rem;
+
+    outline:none;
+
+    border:none;
+
+    background:transparent;
+
+    color:white;
+
+    border-bottom:1px solid white;
+
 }
 
-#password {
-    top: 13rem;
-    right: 6rem;
+#username:focus{
+
+    border-bottom:1px solid rgb(0,242,255);
+
 }
 
-#Password {
-    top: 15rem;
-    left: 5rem;
-    width: 50rem;
-    height: 2rem;
-    outline: none;
-    border: none;
-    background-color: #ffffff00;
-    color: white;
-    border-bottom:1px solid #ffffff;
+/* Password */
+
+label[for="password"]{
+
+    top:13rem;
+
+    right:6rem;
+
 }
 
-#Password:focus{
-    border-bottom: 1px solid rgb(0, 242, 255);
+#password{
+
+    top:15rem;
+
+    left:5rem;
+
+    width:50rem;
+
+    height:2rem;
+
+    outline:none;
+
+    border:none;
+
+    background:transparent;
+
+    color:white;
+
+    border-bottom:1px solid white;
+
 }
 
-#phonenumber {
-    top: 19rem;
-    right: 6rem;
+#password:focus{
+
+    border-bottom:1px solid rgb(0,242,255);
+
 }
 
-#phoneNumber {
-    top: 21rem;
-    left: 5rem;
-    width: 50rem;
-    height: 2rem;
-    outline: none;
-    border: none;
-    background-color: #ffffff00;
-    color: white;
-    border-bottom:1px solid #ffffff;
+/* Phone */
+
+label[for="phone"]{
+
+    top:19rem;
+
+    right:6rem;
+
 }
 
-#phoneNumber:focus{
-    border-bottom: 1px solid rgb(0, 242, 255);
+#phone{
+
+    top:21rem;
+
+    left:5rem;
+
+    width:50rem;
+
+    height:2rem;
+
+    outline:none;
+
+    border:none;
+
+    background:transparent;
+
+    color:white;
+
+    border-bottom:1px solid white;
+
 }
 
-#acceptcode {
-    top: 25rem;
-    right: 6rem;
+#phone:focus{
+
+    border-bottom:1px solid rgb(0,242,255);
+
 }
 
-#acceptCode {
-    top: 27rem;
-    left: 5rem;
-    width: 50rem;
-    height: 2rem;
-    outline: none;
-    border: none;
-    background-color: #ffffff00;
-    color: white;
-    border-bottom:1px solid #ffffff;
+/* Invite */
+
+label[for="inviteCode"]{
+
+    top:25rem;
+
+    right:6rem;
+
 }
 
-#acceptCode:focus{
-    border-bottom: 1px solid rgb(0, 242, 255);
+#inviteCode{
+
+    top:27rem;
+
+    left:5rem;
+
+    width:50rem;
+
+    height:2rem;
+
+    outline:none;
+
+    border:none;
+
+    background:transparent;
+
+    color:white;
+
+    border-bottom:1px solid white;
+
 }
 
-#invitingcode {
-    top: 31rem;
-    right: 6rem;
+#inviteCode:focus{
+
+    border-bottom:1px solid rgb(0,242,255);
+
 }
 
-#invitingCode {
-    top: 33rem;
-    left: 5rem;
-    width: 50rem;
-    height: 2rem;
-    outline: none;
-    border: none;
-    background-color: #ffffff00;
-    color: white;
-    border-bottom:1px solid #ffffff;
+/* Button */
+
+#registerBtn{
+
+    top:33rem;
+
+    right:6rem;
+
+    width:50rem;
+
+    height:3rem;
+
+    background:rgb(0,255,251);
+
+    color:#000;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    font-weight:600;
+
+    transition:.25s;
+
 }
 
-#invitingCode:focus{
-    border-bottom: 1px solid rgb(0, 242, 255);
+#registerBtn:hover{
+
+    background:rgb(0,179,176);
+
 }
 
-#btn {
-    top: 38rem;
-    right: 6rem;
-    width: 50rem;
-    height: 3rem;
-    background-color: rgb(0, 255, 251);
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 500;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-}
-#btn:hover {
-    background-color: rgb(0, 179, 176);
+/* Link */
+
+.Signin{
+
+    position:absolute;
+
+    bottom:20px;
+
+    width:100%;
+
+    text-align:center;
+
+    left:0;
+
 }
 
-.img {
-    position: absolute;
-    left: 5rem;
-    top: 26rem;
-    width: 6rem;
+/* Errors */
+
+#userN{
+
+    position:absolute;
+
+    top:11.5rem;
+
+    right:6rem;
+
+    color:#ff4d4d;
+
+    display:none;
+
 }
 
-.size-6 {
-    color: white;
-    position: absolute;
-    left: 11.5rem;
-    top: 26.5rem;
-    width: 2rem;
-    cursor: pointer;
+#Pass{
+
+    position:absolute;
+
+    top:17.5rem;
+
+    right:6rem;
+
+    color:#ff4d4d;
+
+    display:none;
+
 }
 
-.Signin {
-    position: absolute;
-    bottom: 1rem;
-    right: 28rem;
+#Phon{
+
+    position:absolute;
+
+    top:23.5rem;
+
+    right:6rem;
+
+    color:#ff4d4d;
+
+    display:none;
+
 }
 
-.size-7 {
-    color: #fff;
-    width: 1.5rem;
-    position: absolute;
-    top: 15.5rem;
-    left: 5rem;
-    cursor: pointer;
+#invit{
+
+    position:absolute;
+
+    top:29.5rem;
+
+    right:6rem;
+
+    color:white;
+
+    display:none;
+
 }
 
-#userN {
-    position: absolute;
-    color: red;
-    right: 6rem;
-    top: 11.5rem;
-    display: none;
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media (max-width:768px){
+
+.container{
+
+    width:95%;
+
+    height:auto;
+
+    min-height:100vh;
+
+    padding:30px 20px;
+
 }
 
-#Pass {
-    position: absolute;
-    color: red;
-    right: 6rem;
-    top: 17.5rem;
-    display: none;
+.inputlabel{
+
+    position:static;
+
 }
 
-#Phon {
-    position: absolute;
-    color: red;
-    right: 6rem;
-    top: 23.5rem;
-    display: none;
+label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    text-align:right;
+
 }
 
-#Accept {
-    position: absolute;
-    color: red;
-    right: 6rem;
-    top: 29.5rem;
-    display: none;
+#username,
+#password,
+#phone,
+#inviteCode,
+#registerBtn{
+
+    width:100%;
+
+    left:auto;
+
+    right:auto;
+
 }
 
-#invit {
-    position: absolute;
-    color: rgb(255, 255, 255);
-    right: 6rem;
-    top: 35.5rem;
-    display: none;
+#registerBtn{
+
+    margin-top:30px;
+
+}
+
+#userN,
+#Pass,
+#Phon,
+#invit{
+
+    position:static;
+
+    margin-top:5px;
+
+    margin-bottom:5px;
+
+    text-align:right;
+
+}
+
+.Signin{
+
+    position:static;
+
+    margin-top:25px;
+
+    text-align:center;
+
+}
+
 }

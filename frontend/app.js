@@ -1,79 +1,199 @@
-let $ = document;
-let spanUserN = $.getElementById('userN');
-let UserName = $.getElementById('UserName');
-let spanPass = $.getElementById('Pass');
-let Password = $.getElementById('Password');
-let spanPhon = $.getElementById('Phon');
-let PhonNumber = $.getElementById('phoneNumber');
-let spanAccept = $.getElementById('Accept');
-let acceptCode = $.getElementById('acceptCode');
-let spanInvit = $.getElementById('invit');
-let Inviting = $.getElementById('invitingCode');
-let button = $.getElementById('btn');
+const form = document.getElementById("registerForm");
 
-// اعتبارسنجی‌ها
-UserName.addEventListener('keyup', () => {
-  spanUserN.style.display = UserName.value.length < 8 ? 'block' : 'none';
-  UserName.style.borderBottom = UserName.value.length < 8
-    ? '1px solid rgba(255, 0, 0, 1)'
-    : '1px solid rgba(29, 159, 0, 1)';
-});
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const phone = document.getElementById("phone");
+const inviteCode = document.getElementById("inviteCode");
 
-Password.addEventListener('keyup', () => {
-  spanPass.style.display = Password.value.length < 8 ? 'block' : 'none';
-  Password.style.borderBottom = Password.value.length < 8
-    ? '1px solid rgba(255, 0, 0, 1)'
-    : '1px solid rgba(29, 159, 0, 1)';
-});
+const usernameError = document.getElementById("userN");
+const passwordError = document.getElementById("Pass");
+const phoneError = document.getElementById("Phon");
 
-PhonNumber.addEventListener('keyup', () => {
-  const phoneN = Number(PhonNumber.value);
-  const isValid = PhonNumber.value.length === 11 && !isNaN(phoneN);
-  spanPhon.style.display = isValid ? 'none' : 'block';
-  PhonNumber.style.borderBottom = isValid
-    ? '1px solid rgba(29, 159, 0, 1)'
-    : '1px solid rgba(255, 0, 0, 1)';
-});
 
-acceptCode.addEventListener('keyup', () => {
-  const isCorrect = acceptCode.value === '7388';
-  spanAccept.style.display = isCorrect ? 'none' : 'block';
-  acceptCode.style.borderBottom = isCorrect
-    ? '1px solid rgba(29, 159, 0, 1)'
-    : '1px solid rgba(255, 0, 0, 1)';
-});
+// ==============================
+// توابع کمکی
+// ==============================
 
-Inviting.addEventListener('keyup', () => {
-  spanInvit.style.display = 'block';
-  setTimeout(() => {
-    spanInvit.style.display = 'none';
-  }, 4000);
-});
+function setError(input, span, message) {
 
-// ثبت‌نام
-button.addEventListener('click', async (event) => {
-  event.preventDefault();
+    input.style.borderBottom = "2px solid #ff3b30";
+    span.style.display = "block";
+    span.textContent = message;
 
-  const payload = {
-    username: UserName.value.trim(),
-    password: Password.value.trim(),
-    phone: PhonNumber.value.trim(),
-    inviteCode: Inviting.value.trim()
-  };
+}
 
-  try {
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+function setSuccess(input, span) {
 
-    const data = await res.json();
-    alert(data.message);
-    if (data.message.includes('success')) {
-      window.location.href = 'signin/signin.html';
+    input.style.borderBottom = "2px solid #22c55e";
+    span.style.display = "none";
+
+}
+
+
+// ==============================
+// اعتبارسنجی نام کاربری
+// ==============================
+
+username.addEventListener("input", () => {
+
+    if (username.value.trim().length < 8) {
+
+        setError(
+            username,
+            usernameError,
+            "نام کاربری باید حداقل 8 کاراکتر باشد."
+        );
+
+    } else {
+
+        setSuccess(username, usernameError);
+
     }
-  } catch (err) {
-    alert('خطا در اتصال به سرور');
-  }
+
+});
+
+
+// ==============================
+// اعتبارسنجی رمز
+// ==============================
+
+password.addEventListener("input", () => {
+
+    if (password.value.trim().length < 8) {
+
+        setError(
+            password,
+            passwordError,
+            "رمز عبور باید حداقل 8 کاراکتر باشد."
+        );
+
+    } else {
+
+        setSuccess(password, passwordError);
+
+    }
+
+});
+
+
+// ==============================
+// اعتبارسنجی شماره
+// ==============================
+
+phone.addEventListener("input", () => {
+
+    phone.value = phone.value.replace(/\D/g, "");
+
+    const valid = /^09\d{9}$/.test(phone.value);
+
+    if (!valid) {
+
+        setError(
+            phone,
+            phoneError,
+            "شماره موبایل معتبر نیست."
+        );
+
+    } else {
+
+        setSuccess(phone, phoneError);
+
+    }
+
+});
+
+
+// ==============================
+// ثبت نام
+// ==============================
+
+form.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    const usernameValue = username.value.trim();
+    const passwordValue = password.value.trim();
+    const phoneValue = phone.value.trim();
+    const inviteValue = inviteCode.value.trim();
+
+    if (usernameValue.length < 8) {
+
+        username.focus();
+
+        return alert("نام کاربری معتبر نیست.");
+
+    }
+
+    if (passwordValue.length < 8) {
+
+        password.focus();
+
+        return alert("رمز عبور معتبر نیست.");
+
+    }
+
+    if (!/^09\d{9}$/.test(phoneValue)) {
+
+        phone.focus();
+
+        return alert("شماره موبایل معتبر نیست.");
+
+    }
+
+    const payload = {
+
+        username: usernameValue,
+
+        password: passwordValue,
+
+        phone: phoneValue,
+
+        inviteCode: inviteValue
+
+    };
+
+    try {
+
+        const response = await fetch("/api/register", {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify(payload)
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+            return alert(data.message);
+
+        }
+
+        alert(data.message);
+
+        form.reset();
+
+        username.style.borderBottom = "";
+        password.style.borderBottom = "";
+        phone.style.borderBottom = "";
+
+        window.location.href = "signin/main/prophile/prophile.html";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("ارتباط با سرور برقرار نشد.");
+
+    }
+
 });

@@ -12,7 +12,7 @@ body {
     background-image: url('images/bgc_login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 200vh;
+    height: 240vh;
     color: white;
     position: relative;
 }
@@ -23,10 +23,13 @@ body {
     display: flex;
     position: fixed;
     /*background-color: #fff;
-    *//*margin-left: auto;
+    */
+    /*margin-left: auto;
     margin-right: auto;
-    *//*width: fit-content;
-    */bottom: 0;
+    */
+    /*width: fit-content;
+    */
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
@@ -167,7 +170,7 @@ body {
     position: relative;
     border-radius: 48px;
     background-color: #080065;
-    border:1px solid #00bbff;
+    border: 1px solid #00bbff;
     cursor: pointer;
 }
 
@@ -281,7 +284,7 @@ body {
 .powerbonk {
     display: flex;
     width: 100%;
-    height: 10rem;
+    height: 12rem;
     background-color: #080065;
     border-radius: 15px;
     margin-top: 10px;
@@ -301,7 +304,7 @@ body {
     width: 95%;
     position: absolute;
     color: #00bbff;
-    border-bottom:2px solid #00bbff;
+    border-bottom: 2px solid #00bbff;
     margin-left: 30px;
     padding-bottom: 10px;
 }
@@ -350,4 +353,14 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 15px;
+}
+
+.ghoreKeshy {
+    display: flex;
+    gap: 15px;
+    width: 80%;
+    height: 15rem;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
 }

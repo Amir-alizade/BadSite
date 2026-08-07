@@ -1,67 +1,132 @@
-let $ = document;
-let Btn = $.getElementById('btn');
-let UserName = $.getElementById('UserName');
-let Password = $.getElementById('Password');
-let AcceptCode = $.getElementById('acceptCode');
+const $ = document;
 
+const btn = $.getElementById("btn");
+
+const username = $.getElementById("UserName");
+const userCode = $.getElementById("UserCode");
+
+const userError = $.getElementById("userError");
+const codeError = $.getElementById("codeError");
+
+
+// -------------------------
 // اعتبارسنجی نام کاربری
-UserName.addEventListener('keyup', () => {
-  if (UserName.value.trim().length < 4) {
-    UserName.style.borderBottom = '1px solid rgba(255, 0, 0, 1)';
-  } else {
-    UserName.style.borderBottom = '1px solid rgba(29, 159, 0, 1)';
-  }
-});
+// -------------------------
 
-// اعتبارسنجی رمز عبور
-Password.addEventListener('keyup', () => {
-  if (Password.value.trim().length < 6) {
-    Password.style.borderBottom = '1px solid rgba(255, 0, 0, 1)';
-  } else {
-    Password.style.borderBottom = '1px solid rgba(29, 159, 0, 1)';
-  }
-});
+username.addEventListener("input", () => {
 
-// اعتبارسنجی کد تایید
-AcceptCode.addEventListener('keyup', () => {
-  if (AcceptCode.value.trim() !== '7388') {
-    AcceptCode.style.borderBottom = '1px solid rgba(255, 0, 0, 1)';
-  } else {
-    AcceptCode.style.borderBottom = '1px solid rgba(29, 159, 0, 1)';
-  }
-});
+    if (username.value.trim().length < 8) {
 
-// ارسال فرم ورود
-Btn.addEventListener('click', async (event) => {
-  event.preventDefault();
+        userError.style.display = "block";
 
-  if (
-    UserName.value.trim().length < 4 ||
-    Password.value.trim().length < 6 ||
-    AcceptCode.value.trim() !== '7388'
-  ) {
-    alert('لطفاً اطلاعات را به‌درستی وارد کنید');
-    return;
-  }
+        username.style.borderBottom = "1px solid red";
 
-  const payload = {
-    username: UserName.value.trim(),
-    password: Password.value.trim()
-  };
+    } else {
 
-  try {
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+        userError.style.display = "none";
 
-    const data = await res.json();
-    alert(data.message);
-    if (data.message.includes('success')) {
-      window.location.href = 'main/main.html';
+        username.style.borderBottom = "1px solid #00ff88";
+
     }
-  } catch (err) {
-    alert('خطا در اتصال به سرور');
-  }
+
+});
+
+
+// -------------------------
+// اعتبارسنجی کد اختصاصی
+// -------------------------
+
+userCode.addEventListener("input", () => {
+
+    if (userCode.value.trim().length !== 11) {
+
+        codeError.style.display = "block";
+
+        userCode.style.borderBottom = "1px solid red";
+
+    } else {
+
+        codeError.style.display = "none";
+
+        userCode.style.borderBottom = "1px solid #00ff88";
+
+    }
+
+});
+
+
+// -------------------------
+// ورود
+// -------------------------
+
+btn.addEventListener("click", async (event) => {
+
+    event.preventDefault();
+
+    if (username.value.trim().length < 8) {
+
+        alert("نام کاربری معتبر نیست.");
+
+        return;
+
+    }
+
+    if (userCode.value.trim().length !== 11) {
+
+        alert("کد اختصاصی معتبر نیست.");
+
+        return;
+
+    }
+
+    const payload = {
+
+        username: username.value.trim(),
+
+        userCode: userCode.value.trim()
+
+    };
+
+    try {
+
+        const response = await fetch("/api/login", {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify(payload)
+
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+
+            alert(data.message);
+
+            return;
+
+        }
+
+        alert("خوش آمدید 😊");
+
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        window.location.href = "main/main.html";
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert("ارتباط با سرور برقرار نشد.");
+
+    }
+
 });
