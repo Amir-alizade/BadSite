@@ -30,5 +30,18 @@ db.serialize(() => {
 
 });
 
+// db.run(
+//     `UPDATE users SET role = 'admin' WHERE username = ?`,
+//     ["amiradmin"],
+//     (err) => {
+
+//         if (err) {
+//             console.error("Admin role error:", err.message);
+//         } else {
+//             console.log("Admin role checked.");
+//         }
+
+//     }
+// );
 
 module.exports = db;

@@ -144,3 +144,106 @@ body {
     cursor: pointer;
     font-size: 20px;
 }
+
+
+@media (max-width: 768px) {
+    
+    body {
+        height: auto;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+    
+    .header {
+        height: 3.8rem;
+        font-size: 24px;
+        align-items: center;
+        padding: 0 1rem;
+        box-sizing: border-box;
+    }
+    
+    .back {
+        width: 1.8rem;
+        margin-left: 0;
+    }
+    
+    .Span {
+        margin: 0;
+    }
+    
+    .container,
+    .container2 {
+        width: 92%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .container {
+        height: auto;
+        margin-top: 6rem;
+        padding: 1rem 0 1.5rem;
+    }
+    
+    .container2 {
+        height: auto;
+        margin-top: 2rem;
+        padding: 1rem 0 1.5rem;
+    }
+    
+    .container h2,
+    .container2 h2 {
+        font-size: 18px;
+        line-height: 1.7;
+        padding: 0 10px;
+    }
+    
+    .cadr-1,
+    .cadr-2 {
+        width: 94%;
+        height: auto;
+        min-height: 3.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
+    .cadr-1 h3,
+    .cadr-2 h3 {
+        font-size: 15px;
+        margin: 0;
+        text-align: center;
+        word-break: break-word;
+    }
+    
+    .Hr {
+        width: 90%;
+    }
+    
+    .btns {
+        width: 92%;
+    }
+    
+    .btns1,
+    .btns2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        height: 3.5rem;
+        font-size: 16px;
+    }
+    
+    .Button {
+        width: 92%;
+        height: 3.8rem;
+        margin: 2rem auto;
+        display: block;
+        font-size: 18px;
+    }
+}

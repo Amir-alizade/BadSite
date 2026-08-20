@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>پنل مدیریت</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <div class="page">
+
+        <!-- Header -->
+        <header class="admin-header">
+
+            <div>
+                <h1>پنل مدیریت</h1>
+                <p>مدیریت کاربران و موجودی حساب‌ها</p>
+            </div>
+
+            <button id="backBtn" class="back-btn">
+                بازگشت به پروفایل
+            </button>
+
+        </header>
+
+
+        <!-- Statistics -->
+        <section class="statistics">
+
+            <div class="stat-card">
+                <span>تعداد کاربران</span>
+                <strong id="totalUsers">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>کل موجودی کاربران</span>
+                <strong id="totalWallet">0 USDT</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>کاربران فعال</span>
+                <strong id="activeUsers">0</strong>
+            </div>
+
+        </section>
+
+
+        <!-- Search -->
+        <section class="search-section">
+
+            <div class="section-title">
+                <h2>جستجوی کاربر</h2>
+                <p>با کد اختصاصی، نام کاربری یا شماره موبایل کاربر را پیدا کنید.</p>
+            </div>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="کد اختصاصی / نام کاربری / شماره موبایل"
+                    autocomplete="off"
+                >
+
+                <button id="searchBtn">
+                    جستجو
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- User -->
+        <section id="userSection" class="user-section">
+
+            <div class="empty-state" id="emptyState">
+
+                <div class="empty-icon">
+                    👤
+                </div>
+
+                <h3>کاربری انتخاب نشده است</h3>
+
+                <p>
+                    برای مشاهده اطلاعات کاربر، ابتدا جستجو کنید.
+                </p>
+
+            </div>
+
+
+            <div id="userPanel" class="user-panel hidden">
+
+                <div class="user-header">
+
+                    <div class="avatar">
+                        👤
+                    </div>
+
+                    <div>
+                        <h2 id="userName">---</h2>
+                        <span id="userRole">کاربر</span>
+                    </div>
+
+                </div>
+
+
+                <div class="user-info">
+
+                    <div class="info-item">
+                        <span>شناسه کاربر</span>
+                        <strong id="userId">---</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>کد اختصاصی</span>
+                        <strong id="userCode">---</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>شماره موبایل</span>
+                        <strong id="userPhone">---</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>کد دعوت</span>
+                        <strong id="userInviteCode">---</strong>
+                    </div>
+
+                    <div class="info-item wallet-info">
+                        <span>موجودی فعلی</span>
+                        <strong id="userWallet">0 USDT</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- Wallet Management -->
+
+                <div class="wallet-management">
+
+                    <h3>مدیریت موجودی</h3>
+
+                    <div class="wallet-input">
+
+                        <input
+                            type="number"
+                            id="walletAmount"
+                            placeholder="مبلغ"
+                            min="0"
+                            step="0.01"
+                        >
+
+                        <button id="addWalletBtn" class="add-btn">
+                            افزایش موجودی
+                        </button>
+
+                        <button id="subtractWalletBtn" class="subtract-btn">
+                            کاهش موجودی
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- User Actions -->
+
+                <div class="actions">
+
+                    <button id="refreshUserBtn">
+                        بروزرسانی اطلاعات
+                    </button>
+
+                    <button id="deleteUserBtn" class="danger-btn">
+                        حذف کاربر
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Users Table -->
+
+        <section class="users-section">
+
+            <div class="section-title">
+
+                <h2>آخرین کاربران</h2>
+
+                <p>
+                    فهرست کاربران ثبت شده در سیستم
+                </p>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>نام کاربری</th>
+                            <th>کد اختصاصی</th>
+                            <th>موبایل</th>
+                            <th>موجودی</th>
+                            <th>عملیات</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="usersTable">
+
+                        <tr>
+
+                            <td colspan="6">
+                                در حال دریافت اطلاعات...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Loading -->
+
+        <div id="loading" class="loading hidden">
+
+            <div class="loader"></div>
+
+            <span>در حال پردازش...</span>
+
+        </div>
+
+    </div>
+
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

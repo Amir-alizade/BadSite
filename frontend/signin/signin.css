@@ -225,69 +225,99 @@ body{
 
 /* Responsive */
 
-@media(max-width:768px){
 
-.container{
-
-    height:auto;
-
-    padding-bottom:40px;
-
+@media (max-width: 768px) {
+    
+    body {
+        min-height: 100vh;
+        background-position: center;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        width: 92%;
+        height: 34rem;
+        margin: 0.5rem auto;
+        padding-top: 1rem;
+    }
+    
+    .welcom_txt {
+        font-size: 20px;
+        line-height: 1.8;
+        padding: 0 1rem;
+    }
+    
+    #username {
+        top: 7rem;
+        right: 1rem;
+    }
+    
+    #UserName {
+        top: 8.8rem;
+        left: 4%;
+        width: 92%;
+        box-sizing: border-box;
+    }
+    
+    #password {
+        top: 12.5rem;
+        right: 1rem;
+    }
+    
+    #Password {
+        top: 14.3rem;
+        left: 4%;
+        width: 92%;
+        box-sizing: border-box;
+        padding-left: 2.5rem;
+    }
+    
+    .size-7 {
+        top: 14.7rem;
+        left: 6%;
+        width: 1.3rem;
+    }
+    
+    #acceptcode {
+        top: 18rem;
+        right: 1rem;
+    }
+    
+    #acceptCode {
+        top: 19.8rem;
+        left: 4%;
+        width: 92%;
+        box-sizing: border-box;
+        padding-left: 7rem;
+    }
+    
+    .img {
+        top: 19.8rem;
+        left: 4%;
+        width: 5rem;
+    }
+    
+    .size-6 {
+        top: 20.2rem;
+        left: calc(4% + 5.5rem);
+        width: 1.4rem;
+    }
+    
+    #btn {
+        top: 27rem;
+        right: 4%;
+        width: 92%;
+        height: 3.2rem;
+        font-size: 18px;
+    }
+    
+    .Signin {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 31rem;
+    bottom: auto;
+    text-align: center;
 }
-
-.inputlabel{
-
-    position:static;
-
-    display:block;
-
-    width:90%;
-
-    margin:0 auto;
-
-    text-align:right;
-
-}
-
-#UserName,
-#Password,
-#btn{
-
-    width:90%;
-
-    left:auto;
-
-    margin-top:8px;
-
-    margin-bottom:25px;
-
-}
-
-#username,
-#password{
-
-    margin-top:25px;
-
-}
-
-.size-7{
-
-    display:none;
-
-}
-
-.Signin{
-
-    position:static;
-
-    margin-top:25px;
-
-}
-
-.welcom_txt{
-
-    font-size:22px;
-
-}
-
+    
 }
