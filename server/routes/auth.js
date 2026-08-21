@@ -11,4 +11,6 @@ router.post("/login", authController.login);
 
 router.get("/profile", authController.profile);
 
+router.get("/invite-stats", authController.inviteStats);
+
 module.exports = router;

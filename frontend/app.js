@@ -184,7 +184,7 @@ form.addEventListener("submit", async (event) => {
         password.style.borderBottom = "";
         phone.style.borderBottom = "";
 
-        window.location.href = "signin/main/Prophile/prophile.html";
+        window.location.href = "signin/main/main.html";
 
     }
 
@@ -197,3 +197,22 @@ form.addEventListener("submit", async (event) => {
     }
 
 });
+
+// =============================
+// دریافت کد دعوت از لینک
+// =============================
+
+const urlParams = new URLSearchParams(window.location.search);
+
+const referralCode = urlParams.get("ref");
+
+const inviteInput = document.getElementById("inviteCode");
+
+if (referralCode && inviteInput) {
+
+    inviteInput.value = referralCode;
+
+    // کاربر نتونه کد لینک دعوت رو تغییر بده
+    inviteInput.readOnly = true;
+
+}

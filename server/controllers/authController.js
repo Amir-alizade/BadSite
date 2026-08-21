@@ -5,355 +5,291 @@ const bcrypt = require("bcrypt");
 // ساخت کد اختصاصی
 // =======================
 function generateCode(length = 11) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let result = "";
 
-    let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
 
-    for (let i = 0; i < length; i++) {
-
-        result += chars.charAt(
-            Math.floor(Math.random() * chars.length)
-        );
-
-    }
-
-    return result;
-
+  return result;
 }
 
 // =======================
 // Register
 // =======================
 exports.register = async (req, res) => {
+  try {
+    const {
+      username,
 
-    try {
+      password,
 
-        const {
+      phone,
 
-            username,
+      inviteCode,
+    } = req.body;
 
-            password,
+    if (!username || !password || !phone) {
+      return res.status(400).json({
+        success: false,
 
-            phone,
+        message: "تمام فیلدها الزامی هستند.",
+      });
+    }
 
-            inviteCode
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-        } = req.body;
+    const userCode = generateCode();
 
-        if (!username || !password || !phone) {
+    const myInviteCode = generateCode();
 
-            return res.status(400).json({
+    // =======================
+    // بررسی کد دعوت
+    // =======================
 
-                success: false,
+    let validInviteCode = "";
 
-                message: "تمام فیلدها الزامی هستند."
+    if (inviteCode && inviteCode.trim() !== "") {
+      const inviter = await new Promise((resolve, reject) => {
+        db.get(
+          `SELECT id, my_invite_code
+             FROM users
+             WHERE my_invite_code = ?`,
+          [inviteCode.trim()],
+          (err, user) => {
+            if (err) {
+              reject(err);
+              return;
+            }
 
-            });
+            resolve(user);
+          },
+        );
+      });
 
-        }
+      // اگر کد دعوت معتبر بود ذخیره می‌کنیم
+      if (inviter) {
+        validInviteCode = inviter.my_invite_code;
+      }
+    }
 
-        const hashedPassword = await bcrypt.hash(password,10);
+    ///////////////////////////////////////////////////////
 
-        const userCode = generateCode();
-
-        const myInviteCode = generateCode();
-
-        db.run(
-
-            `INSERT INTO users
+    db.run(
+      `INSERT INTO users
             (
                 user_code,
                 username,
                 password,
                 phone,
                 invite_code,
-                my_invite_code
+                my_invite_code,
             )
             VALUES (?,?,?,?,?,?)`,
 
-            [
+      [
+        userCode,
 
-                userCode,
+        username,
 
-                username,
+        hashedPassword,
 
-                hashedPassword,
+        phone,
 
-                phone,
+        validInviteCode,
+        // inviteCode || "",
 
-                inviteCode || "",
+        myInviteCode,
+      ],
 
-                myInviteCode
+      function (err) {
+        if (err) {
+          if (err.message.includes("UNIQUE")) {
+            return res.status(409).json({
+              success: false,
 
-            ],
+              message: "نام کاربری یا شماره موبایل تکراری است.",
+            });
+          }
 
-            function(err){
+          return res.status(500).json({
+            success: false,
 
-                if(err){
+            message: err.message,
+          });
+        }
 
-                    if(err.message.includes("UNIQUE")){
+        // ورود خودکار بعد از ثبت نام
+        req.session.user = {
+          id: this.lastID,
+        };
 
-                        return res.status(409).json({
+        return res.json({
+          success: true,
 
-                            success:false,
+          message: "ثبت نام با موفقیت انجام شد.",
 
-                            message:"نام کاربری یا شماره موبایل تکراری است."
+          user: {
+            id: this.lastID,
 
-                        });
+            username,
 
-                    }
+            phone,
 
-                    return res.status(500).json({
+            user_code: userCode,
 
-                        success:false,
+            my_invite_code: myInviteCode,
 
-                        message:err.message
+            wallet: 0,
 
-                    });
-
-                }
-
-                // ورود خودکار بعد از ثبت نام
-                req.session.user = {
-                    id: this.lastID
-                };
-
-                return res.json({
-
-                    success:true,
-
-                    message:"ثبت نام با موفقیت انجام شد.",
-
-                    user:{
-
-                        id:this.lastID,
-
-                        username,
-
-                        phone,
-
-                        user_code:userCode,
-
-                        my_invite_code:myInviteCode,
-
-                        wallet:0,
-
-                        role: "user"
-
-                    }
-
-                });
-
-            }
-
-        );
-
-    }
-
-    catch(err){
-
-        console.log(err);
-
-        return res.status(500).json({
-
-            success:false,
-
-            message:"خطای داخلی سرور"
-
+            role: "user",
+          },
         });
+      },
+    );
+  } catch (err) {
+    console.log(err);
 
-    }
+    return res.status(500).json({
+      success: false,
 
+      message: "خطای داخلی سرور",
+    });
+  }
 };
 
 // =======================
 // Login
 // =======================
-exports.login = (req,res)=>{
+exports.login = (req, res) => {
+  const {
+    username,
 
-    const {
+    password,
+  } = req.body;
 
-        username,
+  db.get(
+    "SELECT * FROM users WHERE username=?",
 
-        password
+    [username],
 
-    } = req.body;
+    async (err, user) => {
+      if (err) {
+        return res.status(500).json({
+          success: false,
 
-    db.get(
+          message: err.message,
+        });
+      }
 
-        "SELECT * FROM users WHERE username=?",
+      if (!user) {
+        return res.status(401).json({
+          success: false,
 
-        [username],
+          message: "نام کاربری یا رمز اشتباه است.",
+        });
+      }
 
-        async (err,user)=>{
+      const ok = await bcrypt.compare(password, user.password);
 
-            if(err){
+      if (!ok) {
+        return res.status(401).json({
+          success: false,
 
-                return res.status(500).json({
+          message: "نام کاربری یا رمز اشتباه است.",
+        });
+      }
 
-                    success:false,
+      req.session.user = {
+        id: user.id,
 
-                    message:err.message
+        username: user.username,
 
-                });
+        role: user.role,
+      };
 
-            }
+      res.json({
+        success: true,
 
-            if(!user){
+        message: "ورود موفق بود.",
 
-                return res.status(401).json({
-
-                    success:false,
-
-                    message:"نام کاربری یا رمز اشتباه است."
-
-                });
-
-            }
-
-            const ok = await bcrypt.compare(password,user.password);
-
-            if(!ok){
-
-                return res.status(401).json({
-
-                    success:false,
-
-                    message:"نام کاربری یا رمز اشتباه است."
-
-                });
-
-            }
-
-            req.session.user={
-
-                id:user.id,
-
-                username:user.username,
-
-                role:user.role
-
-            };
-
-            res.json({
-
-                success:true,
-
-                message:"ورود موفق بود.",
-
-                user
-
-            });
-
-        }
-
-    );
-
+        user,
+      });
+    },
+  );
 };
 
 // ================= LOGIN =================
 
 exports.login = (req, res) => {
+  const { username, userCode } = req.body;
 
-    const {
-        username,
-        userCode
-    } = req.body;
+  if (!username || !userCode) {
+    return res.json({
+      success: false,
 
-    if (!username || !userCode) {
+      message: "اطلاعات ناقص است.",
+    });
+  }
 
-        return res.json({
-
-            success: false,
-
-            message: "اطلاعات ناقص است."
-
-        });
-
-    }
-
-    db.get(
-
-        `SELECT * FROM users
+  db.get(
+    `SELECT * FROM users
          WHERE username = ?
          AND user_code = ?`,
 
-        [
+    [username, userCode],
 
-            username,
+    (err, user) => {
+      if (err) {
+        return res.json({
+          success: false,
 
-            userCode
+          message: err.message,
+        });
+      }
 
-        ],
+      if (!user) {
+        return res.json({
+          success: false,
 
-        (err, user) => {
+          message: "نام کاربری یا کد اختصاصی اشتباه است.",
+        });
+      }
 
-            if (err) {
+      // ساخت سشن
+      req.session.user = {
+        id: user.id,
 
-                return res.json({
+        username: user.username,
 
-                    success: false,
+        role: user.role,
+      };
 
-                    message: err.message
+      return res.json({
+        success: true,
 
-                });
+        message: "ورود با موفقیت انجام شد.",
 
-            }
+        user: {
+          id: user.id,
 
-            if (!user) {
+          username: user.username,
 
-                return res.json({
+          phone: user.phone,
 
-                    success: false,
+          wallet: user.wallet,
 
-                    message: "نام کاربری یا کد اختصاصی اشتباه است."
+          user_code: user.user_code,
 
-                });
+          my_invite_code: user.my_invite_code,
 
-            }
-
-            // ساخت سشن
-            req.session.user = {
-
-                id: user.id,
-
-                username: user.username,
-
-                role: user.role
-
-            };
-
-            return res.json({
-
-                success: true,
-
-                message: "ورود با موفقیت انجام شد.",
-
-                user: {
-
-                    id: user.id,
-
-                    username: user.username,
-
-                    phone: user.phone,
-
-                    wallet: user.wallet,
-
-                    user_code: user.user_code,
-
-                    my_invite_code: user.my_invite_code,
-
-                    role: user.role
-
-                }
-
-            });
-
-        }
-
-    );
-
+          role: user.role,
+        },
+      });
+    },
+  );
 };
 
 // ==========================
@@ -361,6 +297,57 @@ exports.login = (req, res) => {
 // ==========================
 
 exports.profile = (req, res) => {
+  if (!req.session.user) {
+    return res.json({
+      success: false,
+      message: "ابتدا وارد شوید.",
+    });
+  }
+
+  db.get(
+    `SELECT
+            id,
+            username,
+            phone,
+            wallet,
+            role,
+            user_code,
+            my_invite_code
+        FROM users
+        WHERE id = ?`,
+
+    [req.session.user.id],
+
+    (err, user) => {
+      if (err) {
+        return res.json({
+          success: false,
+          message: err.message,
+        });
+      }
+
+      if (!user) {
+        return res.json({
+          success: false,
+          message: "کاربر پیدا نشد.",
+        });
+      }
+
+      res.json({
+        success: true,
+
+        user,
+      });
+    },
+  );
+};
+
+
+// ==========================
+// تعداد زیرمجموعه‌های کاربر
+// ==========================
+
+exports.inviteStats = (req, res) => {
 
     if (!req.session.user) {
 
@@ -373,16 +360,9 @@ exports.profile = (req, res) => {
 
     db.get(
 
-        `SELECT
-            id,
-            username,
-            phone,
-            wallet,
-            role,
-            user_code,
-            my_invite_code
-        FROM users
-        WHERE id = ?`,
+        `SELECT my_invite_code
+         FROM users
+         WHERE id = ?`,
 
         [req.session.user.id],
 
@@ -390,7 +370,7 @@ exports.profile = (req, res) => {
 
             if (err) {
 
-                return res.json({
+                return res.status(500).json({
                     success: false,
                     message: err.message
                 });
@@ -406,13 +386,38 @@ exports.profile = (req, res) => {
 
             }
 
-            res.json({
+            db.get(
 
-                success: true,
+                `SELECT COUNT(*) AS total
+                 FROM users
+                 WHERE invite_code = ?`,
 
-                user
+                [user.my_invite_code],
 
-            });
+                (err, result) => {
+
+                    if (err) {
+
+                        return res.status(500).json({
+                            success: false,
+                            message: err.message
+                        });
+
+                    }
+
+                    return res.json({
+
+                        success: true,
+
+                        inviteCode: user.my_invite_code,
+
+                        totalInvited: result.total
+
+                    });
+
+                }
+
+            );
 
         }
 

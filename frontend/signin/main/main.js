@@ -6,6 +6,21 @@ let More = $.getElementById("More");
 let Proph = $.getElementById("Proph");
 let Apps = $.getElementById("Apps");
 let addFriends = $.getElementById("add-friends");
+let giveMoney = $.getElementById("giveMoney");
+let sendMoney = $.getElementById("sendMoney");
+let userOption = $.getElementById("userOption");
+
+giveMoney.addEventListener('click', () => {
+  alert('دوستان جهت سرمایه گذاری روی خانه های کپسولی  به بخش لیست خانه های کپسولی مراجعه کنید')
+})
+
+sendMoney.addEventListener('click', () => {
+  alert('جهت برداشت سرمایه گذاری خود لینک کیف پول و مبلغ برداشتی خود را به این ایدی در تلگرام بفرستید تا مبلغ تتر به کیف پول شما اضافه شود \n @GREENSMAART');
+})
+
+userOption.addEventListener('click', () => {
+  alert('خدمات مشتری \n سلام عزیزان \n  شما با سرمایه گذاری در شرکت GREENSMART روزانه 2.5٪ تا 5٪سود دریافت کنید \n و شما میتوانید با 10عضو دعوت از دوستان \n در قرعه کشی ماهیانه شرکت کنید');
+})
 
 More.addEventListener("click", () => {
   window.location.href = "App/app-page.html";
