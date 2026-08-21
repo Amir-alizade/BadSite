@@ -184,7 +184,7 @@ form.addEventListener("submit", async (event) => {
         password.style.borderBottom = "";
         phone.style.borderBottom = "";
 
-        window.location.href = "signin/main/prophile/prophile.html";
+        window.location.href = "signin/main/Prophile/prophile.html";
 
     }
 

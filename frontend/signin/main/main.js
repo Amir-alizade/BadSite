@@ -36,3 +36,82 @@ addFriends.addEventListener("click", () => {
     "کد دعوتی که در قسمت پروفایل برای شما تعریف شده رابه دوستان خود ارسال کنید تا بتوانید در قرعه کشی و تخم مرغ های طلایی برای دریافت جایزه بهره مند شوید",
   );
 });
+
+// ==============================
+// Image Slider
+// ==============================
+
+// const slides = document.querySelectorAll(".slide");
+
+// let currentSlide = 0;
+
+// function showSlide(index) {
+
+//     slides.forEach((slide, i) => {
+
+//         slide.classList.remove("active");
+
+//         if (i === index) {
+//             slide.classList.add("active");
+//         }
+
+//     });
+
+// }
+
+// function nextSlide() {
+
+//     currentSlide++;
+
+//     if (currentSlide >= slides.length) {
+//         currentSlide = 0;
+//     }
+
+//     showSlide(currentSlide);
+
+// }
+
+// // نمایش عکس اول
+// showSlide(currentSlide);
+
+// // تعویض خودکار هر 4 ثانیه
+// setInterval(() => {
+
+//     nextSlide();
+
+// }, 3000);
+
+// ==============================
+// IMAGE SLIDER
+// ==============================
+
+const slides = document.querySelectorAll("#slider .slide");
+
+let currentSlide = 0;
+
+function showSlide(index) {
+
+    slides.forEach((slide) => {
+        slide.classList.remove("active");
+    });
+
+    slides[index].classList.add("active");
+}
+
+
+// شروع با اسلاید اول
+showSlide(currentSlide);
+
+
+// تعویض اسلاید
+setInterval(() => {
+
+    currentSlide++;
+
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    }
+
+    showSlide(currentSlide);
+
+}, 3000);

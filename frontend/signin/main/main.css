@@ -12,7 +12,7 @@ body {
     background-image: url('images/bgc_login.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 250vh;
+    height: 300vh;
     color: white;
     position: relative;
 }
@@ -154,7 +154,285 @@ body {
     cursor: pointer;
 }
 
+/* =========================================
+   OPTIONS - NAVIGATION
+========================================= */
+
 .options {
+    width: 85%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+
+    padding: 18px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background: linear-gradient(
+        145deg,
+        #07152f,
+        #0b1f42,
+        #102b57
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+
+    box-shadow:
+        0 15px 40px rgba(3, 12, 30, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+
+/* هر گزینه */
+
+.option {
+    position: relative;
+
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border-radius: 18px;
+
+    color: #8fa8ca;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.055);
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* خط نور پایین */
+
+.option::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 25%;
+
+    width: 50%;
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #38bdf8,
+        transparent
+    );
+
+    opacity: 0;
+
+    transition: 0.3s ease;
+}
+
+
+/* آیکون */
+
+.opi-5 {
+    width: 31px;
+    height: 31px;
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+/* Hover */
+
+.option:hover {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 64, 175, 0.45),
+            rgba(14, 116, 144, 0.25)
+        );
+
+    border-color: rgba(56, 189, 248, 0.25);
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.25),
+        0 0 20px rgba(56, 189, 248, 0.08);
+}
+
+
+.option:hover::after {
+    opacity: 1;
+}
+
+
+.option:hover .opi-5 {
+
+    transform: scale(1.12);
+
+    filter:
+        drop-shadow(0 0 8px rgba(56, 189, 248, 0.45));
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.opiText {
+
+    width: 85%;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 18px 0;
+}
+
+
+.opiText > div {
+
+    text-align: center;
+
+    color: #8fa8ca;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* هماهنگی متن با Hover */
+
+.option:hover + .opiText {
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .options {
+
+        grid-template-columns: repeat(5, 1fr);
+
+        gap: 7px;
+
+        padding: 12px;
+
+        border-radius: 20px;
+    }
+
+
+    .option {
+
+        height: 58px;
+
+        border-radius: 14px;
+    }
+
+
+    .opi-5 {
+
+        width: 25px;
+        height: 25px;
+    }
+
+
+    .opiText {
+
+        grid-template-columns: repeat(5, 1fr);
+
+        gap: 7px;
+
+        padding:
+            7px 12px 0;
+    }
+
+
+    .opiText > div {
+
+        font-size: 10px;
+
+        white-space: nowrap;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .options {
+
+        gap: 5px;
+
+        padding: 9px;
+
+        border-radius: 17px;
+    }
+
+
+    .option {
+
+        align-items: end;
+
+        height: 52px;
+
+        border-radius: 12px;
+    }
+
+
+    .opi-5 {
+
+        width: 22px;
+        height: 22px;
+    }
+
+
+    .opiText {
+
+        gap: 5px;
+
+        padding:
+            6px 9px 0;
+    }
+
+
+    .opiText > div {
+
+        font-size: 9px;
+    }
+}
+
+/* .options {
     display: flex;
     width: 80%;
     height: 12rem;
@@ -174,16 +452,9 @@ body {
     cursor: pointer;
 }
 
-.option:hover {
-    width: 7rem;
-    height: 7rem;
-    /* box-shadow: 1px 1px 5px rgb(0, 179, 255); */
-    border: 2px solid rgb(0, 149, 255);
-}
-
 .opiText {
     display: flex;
-    width: 80%;
+    width: 78%;
     margin-left: auto;
     margin-right: auto;
     justify-content: space-around;
@@ -199,7 +470,7 @@ body {
     position: absolute;
     left: 1rem;
     top: 1rem;
-}
+} */
 
 .personal {
     display: flex;
@@ -216,10 +487,15 @@ body {
     position: relative;
     width: 49%;
     height: 12rem;
-    background-color: #080065;
+    background: linear-gradient(135deg, #0c266e, #1747ac, #3c8ff5);
     margin-right: auto;
     margin-left: auto;
     border-radius: 16px;
+    transition: .3s;
+}
+
+.box-1:hover {
+    transform: translateY(-6px);
 }
 
 .level {
@@ -285,10 +561,21 @@ body {
     display: flex;
     width: 100%;
     height: 12rem;
-    background-color: #080065;
+    background: linear-gradient(135deg, #031546, #0d368e, #277adf);
     border-radius: 15px;
-    margin-top: 10px;
+    margin-top: 20px;
     justify-content: space-between;
+    transition: .3s;
+}
+
+.powerbonk:hover {
+    transform: translateY(-6px);
+}
+
+.text-slide-b {
+    font-size: 22px;
+    text-align: right;
+    padding-right: 8px;
 }
 
 .flash {
@@ -311,7 +598,7 @@ body {
 
 .img-appss {
     position: relative;
-    width: 25%;
+    width: 35%;
     height: 100%;
     /* background-color: #fff; */
     border-radius: 15px;
@@ -355,14 +642,103 @@ body {
     border-radius: 15px;
 }
 
-.ghoreKeshy {
-    display: flex;
-    gap: 15px;
-    width: 80%;
-    height: 20rem;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
+/* ==============================
+   SLIDER
+================================ */
+
+#slider {
+    position: relative;
+    width: 100%;
+    height: 350px;
+
+    overflow: hidden;
+    border-radius: 20px;
+
+    background: #111;
+
+    isolation: isolate;
+}
+
+
+/* هر اسلاید */
+
+#slider .slide {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* عکس کل فضای اسلایدر رو پر می‌کنه */
+    object-fit: cover;
+    object-position: center center;
+
+    opacity: 0;
+    transform: scale(1.03);
+
+    transition:
+        opacity 0.9s ease-in-out,
+        transform 4.5s ease-out;
+
+    pointer-events: none;
+}
+
+#slider .slide.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+}
+
+
+/* یک لایه ظریف روی عکس */
+
+#slider::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.18));
+}
+
+
+/* ==============================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    #slider {
+
+        height: 250px;
+
+        border-radius: 15px;
+
+    }
+
+}
+
+
+/* موبایل کوچک */
+
+@media (max-width: 480px) {
+
+    #slider {
+
+        height: 190px;
+
+        border-radius: 12px;
+
+    }
+
 }
 
 
@@ -371,109 +747,109 @@ body {
 
 
 @media screen and (max-width: 768px) {
-    
+
     body {
         height: auto;
         overflow-x: hidden;
         background-size: cover;
         background-position: center;
     }
-    
+
     .main {
         width: 95%;
     }
-    
+
     .logoandnotif {
         width: 95%;
         align-items: center;
         margin-top: 15px;
     }
-    
+
     .logoandnotif img {
         width: 120px;
         height: auto;
     }
-    
-    
-.slider{
-    height:auto;
-    padding:12px;
-}
 
-.slide-1{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
 
-.slide-1img{
-    width:100%;
-    height:210px;
-    object-fit:cover;
-    margin:0;
-    border-radius:12px;
-}
+    .slider {
+        height: auto;
+        padding: 12px;
+    }
 
-.slide-1 p,
-.slide-1 h1,
-.slide-1 h2,
-.slide-1 h3,
-.slide-1 h4,
-.slide-1 h5,
-.slide-1 h6{
-    width:100%;
-    margin:0;
-    font-size:14px;
-    line-height:1.8;
-    text-align:justify;
-}
+    .slide-1 {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
-.slider-Slide{
-    width:100%;
-    margin:12px 0 0;
-    justify-content:center;
-}
-    
+    .slide-1img {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        margin: 0;
+        border-radius: 12px;
+    }
+
+    .slide-1 p,
+    .slide-1 h1,
+    .slide-1 h2,
+    .slide-1 h3,
+    .slide-1 h4,
+    .slide-1 h5,
+    .slide-1 h6 {
+        width: 100%;
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    .slider-Slide {
+        width: 100%;
+        margin: 12px 0 0;
+        justify-content: center;
+    }
+
     .speaker {
         width: 95%;
     }
-    
+
     .options {
-    width: 100%;
-    gap: 12px;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    height: auto;
-}
+        width: 100%;
+        gap: 12px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        height: auto;
+    }
 
-.option {
-    width: 62px;
-    height: 62px;
-    border-radius: 18px;
-}
+    .option {
+        width: 62px;
+        height: 62px;
+        border-radius: 18px;
+    }
 
-.option:hover {
-    width: 62px;
-    height: 62px;
-}
+    .option:hover {
+        width: 62px;
+        height: 62px;
+    }
 
-.opi-5 {
-    width: 34px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
+    .opi-5 {
+        width: 34px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-.opiText {
-    width: 100%;
-    gap: 0;
-    margin-top: 8px;
-    padding: 0;
-    font-size: 12px;
-    justify-content: space-between;
-    text-align: center;
-}
-    
+    .opiText {
+        width: 100%;
+        gap: 0;
+        margin-top: 8px;
+        padding: 0;
+        font-size: 12px;
+        justify-content: space-between;
+        text-align: center;
+    }
+
     .personal {
         width: 100%;
         height: auto;
@@ -481,18 +857,18 @@ body {
         flex-direction: column;
         gap: 15px;
     }
-    
+
     .box-1 {
         width: 100%;
         height: 170px;
     }
-    
+
     .level {
         width: 90px;
         right: 10px;
         bottom: 10px;
     }
-    
+
     .btn-1 {
         width: 110px;
         height: 34px;
@@ -500,39 +876,39 @@ body {
         left: 15px;
         bottom: 15px;
     }
-    
-    .appss{
-    width:100%;
-    height:auto;
-}
 
-    .powerbonk{
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: right;
-    direction: rtl;
-    height: auto;
-    width:98%;
-    max-width:450px;
-    margin:15px auto;
-
-}
-    
-    .img-appss {
-        width: 85%;
-        height: 180px;
-        margin-top: 20px;
+    .appss {
+        width: 100%;
+        height: auto;
     }
-    
+
+    .powerbonk {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: right;
+        direction: rtl;
+        height: auto;
+        width: 98%;
+        max-width: 450px;
+        margin: 15px auto;
+
+    }
+
+    .img-appss {
+        width: 98%;
+        height: 200px;
+        margin-top: 10px;
+        border-radius: 15px;
+    }
+
     .appss-txt {
         width: 90%;
         margin-top: 10px;
         text-align: right;
         direction: rtl;
     }
-    
+
     .icone {
         width: 100%;
         height: 55px;
@@ -540,32 +916,26 @@ body {
         justify-content: flex-end;
         align-items: center;
     }
-    
+
     .flash {
         position: static;
         width: 40px;
     }
-    
+
     .appss-text {
         position: static;
         width: 100%;
         margin: 0 0 -45px;
         padding-bottom: 8px;
     }
-    
+
     .tozih-1 {
         margin: 1px;
         line-height: 1.8;
     }
-    
-    .ghoreKeshy {
-        width: 100%;
-        flex-direction: column;
-        height: auto;
-        gap: 15px;
-    }
-    
-  /*  .head{
+
+
+    /*  .head{
     width:100%;
     height:50px;
     left:0;
@@ -576,108 +946,108 @@ body {
 }*/
 
 
-.head{
-    position: fixed;
-    bottom: 10px;
+    .head {
+        position: fixed;
+        bottom: 10px;
 
-    left: 50%;
-    transform: translateX(-50%);
+        left: 50%;
+        transform: translateX(-50%);
 
-    width: calc(100% - 20px);
-    max-width: 500px;
-    height: 55px;
+        width: calc(100% - 20px);
+        max-width: 500px;
+        height: 55px;
 
-    padding: 8px 10px;
-    box-sizing: border-box;
+        padding: 8px 10px;
+        box-sizing: border-box;
 
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
 
-    border-radius: 22px;
-}
+        border-radius: 22px;
+    }
 
 
-.team {
-    position: relative;
-    top: -9px;
-}
+    .team {
+        position: relative;
+        top: -9px;
+    }
 
-.head>div{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    font-size:11px;
-    text-align:center;
-}
+    .head>div {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        font-size: 11px;
+        text-align: center;
+    }
 
-.head br{
-    display:none;
-}
+    .head br {
+        display: none;
+    }
 
-.home{
-    width:30px;
-    margin:0;
-}
+    .home {
+        width: 30px;
+        margin: 0;
+    }
 
-.headerIcones{
-    width:27px;
-    margin:0;
-}
+    .headerIcones {
+        width: 27px;
+        margin: 0;
+    }
 }
 
 
 @media screen and (max-width:480px) {
-    
+
     .main {
         width: 96%;
     }
-    
+
     .logoandnotif {
         width: 100%;
     }
-    
+
     .slider {
         border-radius: 16px;
     }
-    
+
     .option {
-        width: 58px;
-        height: 58px;
+        width: 54px;
+        height: 54px;
     }
-    
+
     .option:hover {
         width: 58px;
         height: 58px;
     }
-    
+
     .opi-5 {
         width: 30px;
     }
-    
+
     .opiText {
         font-size: 11px;
     }
-    
+
     .box-1 {
         height: 165px;
     }
-    
+
     .btn-1 {
         width: 100px;
         height: 32px;
         font-size: 12px;
     }
-    
+
     .img-appss {
         height: 170px;
     }
-    
+
     .head {
         width: 98%;
     }
-    
+
 }
