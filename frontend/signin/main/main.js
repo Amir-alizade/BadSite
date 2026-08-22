@@ -17,7 +17,12 @@ let totalApps = $.getElementById("totalApps");
 let historyMoney = $.getElementById("givMoney");
 let add_Friends = $.getElementById("add-friends");
 let Help = $.getElementById("help");
+let chanelandIdtg = $.getElementById("chanelandIdtg");
 
+
+chanelandIdtg.addEventListener('click', () => {
+    alert('سلام مخاطب عزیز برای مطلع بودن از احبار و اتفاق های خوب سایت ما کانال و گروه زیر را حتما در تلگرام دنبال کنید \n \n لینک کانال : https://t.me/GREENSMART1 \n\n لینک گروه : https://t.me/+UYkq9VHWBN42OGNk \n\n آیدی ادمین : @GREENSMAART');
+});
 
 Backup.addEventListener('click', () => {
     window.location.href = 'history/company-history.html'
