@@ -432,45 +432,6 @@ body {
     }
 }
 
-/* .options {
-    display: flex;
-    width: 80%;
-    height: 12rem;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: space-around;
-    gap: 5.7rem;
-}
-
-.option {
-    width: 7rem;
-    height: 7rem;
-    position: relative;
-    border-radius: 48px;
-    background-color: #080065;
-    border: 1px solid #00bbff;
-    cursor: pointer;
-}
-
-.opiText {
-    display: flex;
-    width: 78%;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: space-around;
-    gap: 5rem;
-    margin-top: -4.5rem;
-    font-size: 20px;
-    padding-right: 15px;
-}
-
-.opi-5 {
-    width: 5rem;
-    color: #00ddff;
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-} */
 
 .personal {
     display: flex;
@@ -1049,6 +1010,327 @@ body {
 
     .head {
         width: 98%;
+    }
+
+}
+
+
+
+
+/* =========================
+   SLIDER
+========================= */
+/* =================================
+   SLIDER
+================================= */
+
+.image-1.slider {
+    position: relative;
+
+    width: 170rem;
+    max-width: 100%;
+
+    height: 320px;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background: #071426;
+
+    box-sizing: border-box;
+
+    isolation: isolate;
+}
+
+
+/* ================================
+   SLIDES
+================================ */
+
+.slides {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+.slide-1img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 319px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    opacity: 0;
+
+    transform: translateX(100%);
+
+    transition:
+        transform 0.75s cubic-bezier(.77, 0, .18, 1),
+        opacity 0.55s ease;
+
+    pointer-events: none;
+
+    display: block;
+}
+
+
+.slide-1img.active {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+/* ================================
+   BUTTONS
+================================ */
+
+.slider-btn {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    border-radius: 50%;
+
+    background: rgba(5,18,38,.65);
+
+    color: white;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    backdrop-filter: blur(8px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .25s ease;
+
+    box-sizing: border-box;
+}
+
+
+.slider-btn:hover {
+    transform: translateY(-50%) scale(1.08);
+
+    background: rgba(10,35,70,.9);
+}
+
+
+.slider-btn.prev {
+    right: 15px;
+}
+
+
+.slider-btn.next {
+    left: 15px;
+}
+
+
+/* ================================
+   DOTS
+================================ */
+
+.slider-dots {
+    position: absolute;
+
+    bottom: 14px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    z-index: 10;
+}
+
+
+.dot {
+    width: 8px;
+    height: 8px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.45);
+
+    cursor: pointer;
+
+    transition:
+        width .3s ease,
+        background .3s ease;
+}
+
+
+.dot.active {
+    width: 24px;
+
+    border-radius: 10px;
+
+    background: white;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 900px) {
+
+    .image-1.slider {
+        height: 250px;
+
+        border-radius: 20px;
+    }
+
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .image-1.slider {
+
+        width: 100%;
+        max-width: 100%;
+
+        height: 200px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .slide-1img {
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+    }
+
+
+    .slider-btn {
+
+        width: 34px;
+        height: 34px;
+
+        font-size: 24px;
+
+        backdrop-filter: blur(6px);
+
+    }
+
+
+    .slider-btn.prev {
+        right: 8px;
+    }
+
+
+    .slider-btn.next {
+        left: 8px;
+    }
+
+
+    .slider-dots {
+
+        bottom: 9px;
+
+        gap: 5px;
+
+    }
+
+
+    .dot {
+
+        width: 6px;
+        height: 6px;
+
+    }
+
+
+    .dot.active {
+
+        width: 20px;
+
+    }
+
+}
+
+
+/* =================================
+   SMALL PHONES
+================================= */
+
+@media (max-width: 380px) {
+
+    .image-1.slider {
+
+        height: 175px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .slider-btn {
+
+        width: 30px;
+        height: 30px;
+
+        font-size: 21px;
+
+    }
+
+
+    .slider-btn.prev {
+        right: 6px;
+    }
+
+
+    .slider-btn.next {
+        left: 6px;
     }
 
 }

@@ -85,7 +85,7 @@ exports.register = async (req, res) => {
                 password,
                 phone,
                 invite_code,
-                my_invite_code,
+                my_invite_code
             )
             VALUES (?,?,?,?,?,?)`,
 

@@ -9,9 +9,47 @@ let addFriends = $.getElementById("add-friends");
 let giveMoney = $.getElementById("giveMoney");
 let sendMoney = $.getElementById("sendMoney");
 let userOption = $.getElementById("userOption");
+let vip_1 = $.getElementById("VIP-1");
+let vip_2 = $.getElementById("VIP-2");
+let vip_3 = $.getElementById("VIP-3");
+let totalApps = $.getElementById("totalApps");
+let historyMoney = $.getElementById("givMoney")
+let add_Friends = $.getElementById("add-friends")
+let Help = $.getElementById("help")
+
+
+Help.addEventListener('click', () => {
+  alert('دوستان عزیزی که ثبت نام میکنید به قسمت پروفایل برید و قسمت بالا نوشته شده نام کابری و کد اختصاصی شما 7KPGC3EB9KV \n این شکلی هست این کد اختصاصی شما برای ورود دوباره هست و شما این کد رو باید کپی کنید و به همراه نام کاربری خود برای ورود استفاده کنیدوقتی یک بار ثبت نام کردید با این کد اختصاصی و نام کاربری به بخش از قبل حساب دارم وارد بشید نام کاربری و کد اختصاصی خود را وارد کنید و وارد سایت بشید در قسمت پرداخت هر مبلغی که میخواهید سرمایه گذاری کنید رو انتخاب کنید و به ادرس کیف پول واریز کنید و اسکرین شات بگیرید و داخل تلگرام به این ایدی \n @GREENSMAART \n بفرستید تایید و کیف پول سرمایه گذاری شما شارژ خواهد شد');
+});
+add_Friends.addEventListener('click', () => {
+  window.location.href = 'Prophile/prophile.html'
+});
+
+historyMoney.addEventListener('click', () => {
+  alert('درآمد روزانه خود را مشاهده کنید');
+  window.location.href = 'Prophile/prophile.html'
+});
+totalApps.addEventListener('click', () => {
+  window.location.href = 'App/app-page.html'
+});
 
 giveMoney.addEventListener('click', () => {
   alert('دوستان جهت سرمایه گذاری روی خانه های کپسولی  به بخش لیست خانه های کپسولی مراجعه کنید')
+})
+
+vip_1.addEventListener('click', () => {
+  alert('درخواست خرید کپسول VIP-1 رو داده اید با موفقیت ثبت شد \n مدل دستگاه : VIP-1 \n شماره دستگاه : a1:b1:c1:d1\|gsh11223 \n قیمت دستگاه : 5.000.00 USDT \n \n لطفا در زمان پرداخت دقت کنید که مبلغ دستگاه را به درستی پرداخت کنید و بعد به ادمین رسید خود را ارسال کنید و تایید شود \n این پروسه 1 ساعت الی 2 ساعت زمان میبرد.');
+  window.location.href = 'Prophile/meno_1/BYPLAN.html'
+})
+
+vip_2.addEventListener('click', () => {
+  alert('درخواست خرید کپسول VIP-2 رو داده اید با موفقیت ثبت شد \n مدل دستگاه : VIP-2 \n شماره دستگاه : a2:b2:c2:d2/\GSH33 \n قیمت دستگاه : 4.000.00 USDT \n \n لطفا در زمان پرداخت دقت کنید که مبلغ دستگاه را به درستی پرداخت کنید و بعد به ادمین رسید خود را ارسال کنید و تایید شود \n این پروسه 1 ساعت الی 2 ساعت زمان میبرد.');
+  window.location.href = 'Prophile/meno_1/BYPLAN.html'
+})
+
+vip_3.addEventListener('click', () => {
+  alert('درخواست خرید کپسول VIP-3 رو داده اید با موفقیت ثبت شد \n مدل دستگاه : VIP-3 \n شماره دستگاه : a3:b3:c3:d3/ABCD1234 \n قیمت دستگاه : 3.000.00 USDT \n \n لطفا در زمان پرداخت دقت کنید که مبلغ دستگاه را به درستی پرداخت کنید و بعد به ادمین رسید خود را ارسال کنید و تایید شود \n این پروسه 1 ساعت الی 2 ساعت زمان میبرد.');
+  window.location.href = 'Prophile/meno_1/BYPLAN.html'
 })
 
 sendMoney.addEventListener('click', () => {
@@ -52,49 +90,313 @@ addFriends.addEventListener("click", () => {
   );
 });
 
-// ==============================
-// Image Slider
-// ==============================
 
-// const slides = document.querySelectorAll(".slide");
+// ========================================
+// PROFESSIONAL IMAGE SLIDER
+// ========================================
 
-// let currentSlide = 0;
+document.addEventListener("DOMContentLoaded", () => {
 
-// function showSlide(index) {
+    const slider = document.querySelector(".image-1.slider");
 
-//     slides.forEach((slide, i) => {
+    // اگر اسلایدر در این صفحه وجود نداشت
+    // هیچ کاری با بقیه کدهای سایت نکن
+    if (!slider) return;
 
-//         slide.classList.remove("active");
 
-//         if (i === index) {
-//             slide.classList.add("active");
-//         }
+    const slides = slider.querySelectorAll(".slide-1img");
+    const dots = slider.querySelectorAll(".dot");
 
-//     });
+    const prevButton = slider.querySelector(".slider-btn.prev");
+    const nextButton = slider.querySelector(".slider-btn.next");
 
-// }
 
-// function nextSlide() {
+    // اگر اسلایدی وجود نداشت
+    if (!slides.length) return;
 
-//     currentSlide++;
 
-//     if (currentSlide >= slides.length) {
-//         currentSlide = 0;
-//     }
+    let currentIndex = 0;
 
-//     showSlide(currentSlide);
+    let autoPlay = null;
 
-// }
+    const AUTO_PLAY_TIME = 4500;
 
-// // نمایش عکس اول
-// showSlide(currentSlide);
 
-// // تعویض خودکار هر 4 ثانیه
-// setInterval(() => {
+    // ========================================
+    // نمایش اسلاید
+    // ========================================
 
-//     nextSlide();
+    function showSlide(index) {
 
-// }, 3000);
+        // جلوگیری از خارج شدن index
+        if (index < 0) {
+            index = slides.length - 1;
+        }
+
+        if (index >= slides.length) {
+            index = 0;
+        }
+
+        currentIndex = index;
+
+
+        // اسلایدها
+        slides.forEach((slide, i) => {
+
+            slide.classList.toggle(
+                "active",
+                i === currentIndex
+            );
+
+        });
+
+
+        // نقطه‌ها
+        dots.forEach((dot, i) => {
+
+            dot.classList.toggle(
+                "active",
+                i === currentIndex
+            );
+
+        });
+
+    }
+
+
+    // ========================================
+    // اسلاید بعدی
+    // ========================================
+
+    function nextSlide() {
+
+        showSlide(currentIndex + 1);
+
+    }
+
+
+    // ========================================
+    // اسلاید قبلی
+    // ========================================
+
+    function previousSlide() {
+
+        showSlide(currentIndex - 1);
+
+    }
+
+
+    // ========================================
+    // شروع پخش خودکار
+    // ========================================
+
+    function startAutoPlay() {
+
+        stopAutoPlay();
+
+        autoPlay = setInterval(() => {
+
+            nextSlide();
+
+        }, AUTO_PLAY_TIME);
+
+    }
+
+
+    // ========================================
+    // توقف پخش خودکار
+    // ========================================
+
+    function stopAutoPlay() {
+
+        if (autoPlay !== null) {
+
+            clearInterval(autoPlay);
+
+            autoPlay = null;
+
+        }
+
+    }
+
+
+    // ========================================
+    // ریست تایمر
+    // ========================================
+
+    function resetAutoPlay() {
+
+        stopAutoPlay();
+
+        startAutoPlay();
+
+    }
+
+
+    // ========================================
+    // دکمه قبلی
+    // ========================================
+
+    if (prevButton) {
+
+        prevButton.addEventListener("click", () => {
+
+            previousSlide();
+
+            resetAutoPlay();
+
+        });
+
+    }
+
+
+    // ========================================
+    // دکمه بعدی
+    // ========================================
+
+    if (nextButton) {
+
+        nextButton.addEventListener("click", () => {
+
+            nextSlide();
+
+            resetAutoPlay();
+
+        });
+
+    }
+
+
+    // ========================================
+    // کلیک روی نقطه‌ها
+    // ========================================
+
+    dots.forEach((dot, index) => {
+
+        dot.addEventListener("click", () => {
+
+            showSlide(index);
+
+            resetAutoPlay();
+
+        });
+
+    });
+
+
+    // ========================================
+    // توقف هنگام قرار گرفتن موس
+    // ========================================
+
+    slider.addEventListener("mouseenter", () => {
+
+        stopAutoPlay();
+
+    });
+
+
+    // ========================================
+    // ادامه بعد از خارج شدن موس
+    // ========================================
+
+    slider.addEventListener("mouseleave", () => {
+
+        startAutoPlay();
+
+    });
+
+
+    // ========================================
+    // پشتیبانی از لمس موبایل
+    // ========================================
+
+    let touchStartX = 0;
+
+    let touchEndX = 0;
+
+
+    slider.addEventListener(
+        "touchstart",
+        (event) => {
+
+            touchStartX =
+                event.changedTouches[0].screenX;
+
+            stopAutoPlay();
+
+        },
+        { passive: true }
+    );
+
+
+    slider.addEventListener(
+        "touchend",
+        (event) => {
+
+            touchEndX =
+                event.changedTouches[0].screenX;
+
+            handleSwipe();
+
+            startAutoPlay();
+
+        },
+        { passive: true }
+    );
+
+
+    function handleSwipe() {
+
+        const difference =
+            touchStartX - touchEndX;
+
+
+        // حداقل مقدار حرکت انگشت
+        const SWIPE_THRESHOLD = 50;
+
+
+        // کشیدن به چپ
+        if (difference > SWIPE_THRESHOLD) {
+
+            nextSlide();
+
+        }
+
+
+        // کشیدن به راست
+        else if (difference < -SWIPE_THRESHOLD) {
+
+            previousSlide();
+
+        }
+
+    }
+
+
+    // ========================================
+    // جلوگیری از انتخاب ناخواسته عکس
+    // ========================================
+
+    slides.forEach((slide) => {
+
+        slide.setAttribute(
+            "draggable",
+            "false"
+        );
+
+    });
+
+
+    // ========================================
+    // شروع اسلایدر
+    // ========================================
+
+    showSlide(0);
+
+    startAutoPlay();
+
+});
+
 
 // ==============================
 // IMAGE SLIDER
@@ -130,3 +432,4 @@ setInterval(() => {
     showSlide(currentSlide);
 
 }, 3000);
+

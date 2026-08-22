@@ -99,10 +99,46 @@
                 </div>
                 <div class="slider">
                     <div class="slide-1">
-                        <div class="image-1">
-                            <img class="slide-1img" src="images/Slider-1.jpeg"
-                                alt="photo">
+
+                        <div class="image-1 slider">
+
+                            <div class="slides">
+
+                                <img
+                                    class="slide-1img active"
+                                    src="images/slide2.jpg"
+                                    alt="photo">
+
+                                <img
+                                    class="slide-1img"
+                                    src="images/Slider-1.jpeg"
+                                    alt="photo">
+
+                                <img
+                                    class="slide-1img"
+                                    src="images/slide3.jpg"
+                                    alt="photo">
+
+                            </div>
+
+                            <button class="slider-btn prev" type="button">
+                                ›
+                            </button>
+
+                            <button class="slider-btn next" type="button">
+                                ‹
+                            </button>
+
+                            <div class="slider-dots">
+
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+
+                            </div>
+
                         </div>
+
                         <div class="text-1">
                             <p class="text-slide-b">سرمایه‌گذاری در خانه‌های
                                 کپسولی مدرن 🏠
@@ -127,12 +163,12 @@
                     <div class="slide-3"></div>
                     <div class="slide-4"></div>
                 </div>
-                <div class="slider-Slide">
+                <!-- <div class="slider-Slide">
                     <div class="dot-1 dsn"></div>
                     <div class="dot-2 dsn"></div>
                     <div class="dot-3 dsn"></div>
                     <div class="dot-4 dsn"></div>
-                </div>
+                </div> -->
                 <div class="speaker">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5"
@@ -171,9 +207,9 @@
                             <path fill-rule="evenodd"
                                 d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z"
                                 clip-rule="evenodd" />
-                             </svg>
+                        </svg>
                     </div>
-                    <div class="option">
+                    <div class="option" id="help">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24" fill="currentColor"
                             class="opi-5">
@@ -234,7 +270,7 @@
                         <p class="Ptxt-1" style="color: red;">
                             دریافت درآمد روزانه
                         </p>
-                        <button class="btn-1">مشاهده کنید</button>
+                        <button class="btn-1" id="givMoney">مشاهده کنید</button>
                     </div>
                     <div class="box-1">
                         <img class="level"
@@ -246,11 +282,11 @@
                         <p class="Ptxt-1" style="color: rgb(153, 153, 153);">
                             هم اکنون خرید کنید
                         </p>
-                        <button class="btn-1">برو</button>
+                        <button class="btn-1" id="totalApps">برو</button>
                     </div>
                 </div>
                 <div class="appss">
-                    <div class="powerbonk">
+                    <div class="powerbonk" id="VIP-1">
                         <div class="img-appss">
                             <img class="B1" src="images/vip-1.jpg" alt="photo">
                         </div>
@@ -259,15 +295,22 @@
                                 style="color: rgb(223, 189, 0);">
                                 GSH vip 1
                             </h1><br><br><br><br>
-                            <p class="tozih-1" style="text-align: left; color: rgb(223, 189, 0);">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24" style="width: 1.2rem;" fill="currentColor"
-                                class="size-6">
-                                <path fill-rule="evenodd"
-                                    d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            قیمت دستگاه : USDT 1,500.00 <br> مدل دستگاه : VIP 3 نوع <br> شماره دستگاه : a1:b1:c1:d1\|gsh11223 <br> <span style="color: rgb(255, 47, 0); font-weight: bold; font-size: 18px;">دستگاه شامل جوایز شانسی و شرکت در قرعه کشی میباشد + جوایز و راحتی بیشتر</span>
+                            <p class="tozih-1"
+                                style="text-align: left; color: rgb(223, 189, 0);">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" style="width: 1.2rem;"
+                                    fill="currentColor"
+                                    class="size-6">
+                                    <path fill-rule="evenodd"
+                                        d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                قیمت دستگاه : USDT 5.000.00 <br> مدل دستگاه :
+                                VIP 3 نوع <br> شماره دستگاه :
+                                a1:b1:c1:d1\|gsh11223 <br> <span
+                                    style="color: rgb(255, 47, 0); font-weight: bold; font-size: 18px;">دستگاه
+                                    شامل جوایز شانسی و شرکت در قرعه کشی میباشد +
+                                    جوایز و راحتی بیشتر</span>
                             </p>
                         </div>
                         <div class="icone">
@@ -281,7 +324,7 @@
                         </div>
 
                     </div>
-                    <div class="powerbonk">
+                    <div class="powerbonk" id="VIP-2">
                         <div class="img-appss">
                             <img class="B2" src="images/vip-2.jpg" alt="photo">
                         </div>
@@ -290,15 +333,22 @@
                                 style="color: rgb(155, 155, 155);">
                                 GSH vip 2
                             </h1><br><br><br><br>
-                             <p class="tozih-1" style="text-align: left; color: rgb(195, 195, 195);">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24" style="width: 1.2rem;" fill="currentColor"
-                                class="size-6">
-                                <path fill-rule="evenodd"
-                                    d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            قیمت دستگاه : USDT 900.00 <br> مدل دستگاه : VIP 3 نوع <br> شماره دستگاه : a2:b2:c2:d2/\GSH33 <br> <span style="color: rgb(255, 47, 0); font-weight: bold; font-size: 18px;">دستگاه شامل جوایز شانسی و شرکت در قرعه کشی میباشد</span>
+                            <p class="tozih-1"
+                                style="text-align: left; color: rgb(195, 195, 195);">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" style="width: 1.2rem;"
+                                    fill="currentColor"
+                                    class="size-6">
+                                    <path fill-rule="evenodd"
+                                        d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                قیمت دستگاه : USDT 4.000.00 <br> مدل دستگاه :
+                                VIP 3 نوع <br> شماره دستگاه : a2:b2:c2:d2/\GSH33
+                                <br> <span
+                                    style="color: rgb(255, 47, 0); font-weight: bold; font-size: 18px;">دستگاه
+                                    شامل جوایز شانسی و شرکت در قرعه کشی
+                                    میباشد</span>
                             </p>
                         </div>
                         <div class="icone">
@@ -311,7 +361,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="powerbonk">
+                    <div class="powerbonk" id="VIP-3">
                         <div class="img-appss">
                             <img class="B2" src="images/vip-3.jpg" alt="photo">
                         </div>
@@ -320,14 +370,20 @@
                                 GSH vip 3
                             </h1><br><br><br><br>
                             <p class="tozih-1" style="text-align: left;">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24" style="width: 1.2rem;" fill="currentColor"
-                                class="size-6">
-                                <path fill-rule="evenodd"
-                                    d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            قیمت دستگاه : USDT 300.00 <br> مدل دستگاه : VIP 3 نوع <br> شماره دستگاه : a3:b3:c3:d3/ABCD1234 <br> <span style="color: rgb(255, 47, 0); font-weight: bold; font-size: 18px;">دستگاه شامل جوایز شانسی و شرکت در قرعه کشی میباشد</span>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" style="width: 1.2rem;"
+                                    fill="currentColor"
+                                    class="size-6">
+                                    <path fill-rule="evenodd"
+                                        d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                قیمت دستگاه : USDT 3.000.00 <br> مدل دستگاه :
+                                VIP 3 نوع <br> شماره دستگاه :
+                                a3:b3:c3:d3/ABCD1234 <br> <span
+                                    style="color: rgb(255, 47, 0); font-weight: bold; font-size: 18px;">دستگاه
+                                    شامل جوایز شانسی و شرکت در قرعه کشی
+                                    میباشد</span>
                             </p>
                         </div>
                         <div class="icone">

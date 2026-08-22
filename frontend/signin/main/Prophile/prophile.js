@@ -136,8 +136,7 @@ async function loadProfile() {
     const inviteCode = $.getElementById("inviteCode");
 
     const profileRole = $.getElementById("profileRole");
-
-    const joinDate = $.getElementById("joinDate");
+    
 
     if (profileName) {
       profileName.textContent = user.username || "---";

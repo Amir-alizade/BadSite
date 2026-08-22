@@ -1,109 +1,676 @@
+/* =========================================
+   RESET
+========================================= */
+
 ::selection {
-    color: rgb(0, 136, 255);
+    color: #0088ff;
     background-color: #fff;
 }
 
 * {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serifz;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    /* background-color: #1c0631; */
-    background-image: url('../images/bgc_login.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 200vh;
+    min-height: 100vh;
     color: white;
-    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8, 0, 101, 0.94),
+            rgba(0, 38, 75, 0.92),
+            rgba(5, 8, 45, 0.97)
+        ),
+        url('../images/bgc_login.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    overflow-x: hidden;
 }
+
+
+/* =========================================
+   CONTAINER
+========================================= */
 
 .container {
-    width: 80%;
-    height: 200vh;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5rem;
+    width: min(90%, 1250px);
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding: 60px 0 80px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
 }
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
 
 .powerbonk {
-    display: flex;
+    position: relative;
+
     width: 100%;
-    height: 13rem;
-    background-color: #080065;
-    border-radius: 15px;
-    margin-top: 10px;
-    justify-content: space-between;
+    min-height: 210px;
+
+    display: flex;
+    align-items: stretch;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8, 0, 101, 0.98),
+            rgba(0, 55, 100, 0.94)
+        );
+
+    border: 1px solid rgba(0, 200, 255, 0.35);
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
 }
+
+
+/* نور ظریف بالای کارت */
+
+.powerbonk::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 5%;
+    right: 5%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d9ff,
+            transparent
+        );
+
+    opacity: 0.8;
+}
+
+
+/* Hover */
+
+.powerbonk:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(0, 210, 255, 0.75);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(0, 187, 255, 0.12);
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
 .img-appss {
     position: relative;
-    width: 25%;
-    height: 100%;
-    /* background-color: #fff; */
-    border-radius: 15px;
-    border: 1px solid rgb(0, 200, 255);
+
+    width: 27%;
+    min-width: 260px;
+
+    height: auto;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    margin: 10px;
+
+    border: 1px solid rgba(0, 200, 255, 0.5);
+
+    background: #02082b;
 }
+
+
+.img-appss::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 200, 255, 0.12),
+            transparent 45%,
+            rgba(8, 0, 101, 0.25)
+        );
+
+    pointer-events: none;
+}
+
+
 .B2 {
+    display: block;
+
     width: 100%;
     height: 100%;
-    border-radius: 15px;
+
+    min-height: 188px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
 }
+
+
+.powerbonk:hover .B2 {
+    transform: scale(1.04);
+
+    filter:
+        brightness(1.08)
+        saturate(1.08);
+}
+
+
+/* =========================================
+   TEXT AREA
+========================================= */
+
 .appss-txt {
     position: relative;
-    width: 65%;
-    height: 100%;
-    /* background-color: #fff; */
-    border-radius: 15px;
+
+    flex: 1;
+
+    width: auto;
+    height: auto;
+
+    padding: 28px 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.icone {
+
+
+.appss-text {
     position: relative;
-    width: 10%;
-    height: 100%;
-    /* background-color: #fff; */
-    border-radius: 15px;
+
+    width: 100%;
+
+    margin: 0 0 18px;
+
+    padding: 0 0 12px;
+
+    color: #00cfff;
+
+    font-size: clamp(22px, 2.2vw, 32px);
+    line-height: 1.4;
+
+    border-bottom: 2px solid transparent;
+
+    border-image:
+        linear-gradient(
+            90deg,
+            #00ddff,
+            rgba(0, 221, 255, 0)
+        ) 1;
 }
+
 
 .tozih-1 {
-    margin-left: 50px;
-    font-size: 20px;
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: clamp(15px, 1.25vw, 18px);
+
+    line-height: 2;
+
+    text-align: justify;
 }
-.appss-text {
-    width: 95%;
-    position: absolute;
-    color: #00bbff;
-    border-bottom:2px solid #00bbff;
-    margin-left: 30px;
-    padding-bottom: 10px;
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.icone {
+    position: relative;
+
+    width: 90px;
+    min-width: 90px;
+
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+
 .flash {
-    position: absolute;
-    width: 4rem;
-    color: #00bbff;
-    right: 6px;
-    top: 3rem;
+    position: relative;
+
+    width: 50px;
+    height: 50px;
+
+    right: auto;
+    top: auto;
+
+    padding: 10px;
+
+    color: #00ddff;
+
+    border: 1px solid rgba(0, 221, 255, 0.45);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 221, 255, 0.12),
+            rgba(0, 70, 130, 0.35)
+        );
+
     cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
-.B1 {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
+
+
+.flash:hover {
+    transform: translateX(-5px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 221, 255, 0.3),
+            rgba(0, 70, 130, 0.5)
+        );
+
+    box-shadow:
+        0 0 20px rgba(0, 221, 255, 0.2);
 }
+
+
+/* =========================================
+   MORE
+========================================= */
 
 #more {
+    width: fit-content;
+
+    margin: 5px auto 0;
+
+    color: #00d9ff;
+
+    font-size: 20px;
+
     cursor: pointer;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
 }
 
-#back {
-    width: 80%;
-    height: 3rem;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    color: black;
-    background-color: #00ddff;
-    margin-top: 40px;
-    margin-left: 8rem;
-    font-size: 22px;
-    font-weight: bold;
-    border-radius: 10px;
-    
+
+#more:hover {
+    color: white;
+
+    transform: translateY(-2px);
 }
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+#back {
+    width: min(80%, 600px);
+
+    min-height: 52px;
+
+    margin: 10px auto 0;
+
+    outline: none;
+    border: 1px solid rgba(0, 240, 255, 0.5);
+
+    cursor: pointer;
+
+    color: #001522;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00ddff,
+            #00aeea,
+            #00ddff
+        );
+
+    background-size: 200% 100%;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 200, 255, 0.15);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-position 0.4s ease;
+}
+
+
+#back:hover {
+    transform: translateY(-3px);
+
+    background-position: 100% 0;
+
+    box-shadow:
+        0 15px 35px rgba(0, 200, 255, 0.3);
+}
+
+
+#back:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .container {
+        width: 92%;
+
+        padding-top: 40px;
+        padding-bottom: 60px;
+
+        gap: 22px;
+    }
+
+
+    .powerbonk {
+        min-height: 190px;
+    }
+
+
+    .img-appss {
+        width: 32%;
+        min-width: 200px;
+    }
+
+
+    .appss-txt {
+        padding: 22px 18px;
+    }
+
+
+    .tozih-1 {
+        font-size: 15px;
+
+        line-height: 1.8;
+    }
+
+
+    .icone {
+        width: 70px;
+        min-width: 70px;
+    }
+
+
+    .flash {
+        width: 44px;
+        height: 44px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    body {
+        background-attachment: scroll;
+    }
+
+
+    .container {
+        width: 94%;
+
+        padding:
+            25px
+            0
+            45px;
+
+        gap: 18px;
+    }
+
+
+    /* کارت عمودی */
+
+    .powerbonk {
+        width: 100%;
+
+        min-height: auto;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        border-radius: 18px;
+
+        gap: 0;
+
+        transform: none !important;
+    }
+
+
+    .powerbonk:hover {
+        transform: translateY(-2px) !important;
+    }
+
+
+    /* عکس */
+
+    .img-appss {
+        width: calc(100% - 20px);
+
+        min-width: 0;
+
+        height: 210px;
+
+        margin: 10px;
+
+        border-radius: 15px;
+    }
+
+
+    .B2 {
+        width: 100%;
+        height: 100%;
+
+        min-height: 0;
+
+        object-fit: cover;
+    }
+
+
+    /* متن */
+
+    .appss-txt {
+        width: 100%;
+
+        padding:
+            10px
+            18px
+            20px;
+    }
+
+
+    .appss-text {
+        margin-bottom: 12px;
+
+        padding-bottom: 9px;
+
+        font-size: 21px;
+
+        line-height: 1.5;
+
+        text-align: right;
+    }
+
+
+    .tozih-1 {
+        font-size: 14px;
+
+        line-height: 2;
+
+        text-align: right;
+    }
+
+
+    /* آیکون */
+
+    .icone {
+        position: absolute;
+
+        top: 18px;
+        left: 18px;
+
+        width: 44px;
+        min-width: 44px;
+
+        height: 44px;
+
+        z-index: 5;
+    }
+
+
+    .flash {
+        width: 42px;
+        height: 42px;
+
+        padding: 8px;
+
+        background:
+            rgba(3, 15, 55, 0.8);
+
+        backdrop-filter: blur(8px);
+    }
+
+
+    /* بیشتر */
+
+    #more {
+        margin-top: 5px;
+
+        font-size: 18px;
+    }
+
+
+    /* دکمه */
+
+    #back {
+        width: 100%;
+
+        min-height: 50px;
+
+        margin-top: 5px;
+
+        font-size: 18px;
+
+        border-radius: 11px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .container {
+        width: 95%;
+
+        padding-top: 18px;
+    }
+
+
+    .img-appss {
+        height: 175px;
+    }
+
+
+    .appss-txt {
+        padding:
+            8px
+            14px
+            17px;
+    }
+
+
+    .appss-text {
+        font-size: 19px;
+    }
+
+
+    .tozih-1 {
+        font-size: 13px;
+
+        line-height: 1.9;
+    }
+
+
+    .icone {
+        top: 15px;
+        left: 15px;
+    }
+
+
+    .flash {
+        width: 38px;
+        height: 38px;
+    }
+
+}   
