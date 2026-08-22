@@ -13,9 +13,9 @@ let vip_1 = $.getElementById("VIP-1");
 let vip_2 = $.getElementById("VIP-2");
 let vip_3 = $.getElementById("VIP-3");
 let totalApps = $.getElementById("totalApps");
-let historyMoney = $.getElementById("givMoney")
-let add_Friends = $.getElementById("add-friends")
-let Help = $.getElementById("help")
+let historyMoney = $.getElementById("givMoney");
+let add_Friends = $.getElementById("add-friends");
+let Help = $.getElementById("help");
 
 
 Help.addEventListener('click', () => {
