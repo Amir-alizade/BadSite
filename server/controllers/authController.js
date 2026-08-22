@@ -1,6 +1,77 @@
 const db = require("../config/db");
 const bcrypt = require("bcrypt");
 
+// ==========================================
+// سیستم سود روزانه 2.5 درصد
+// ==========================================
+
+function updateDailyProfit(userId, callback) {
+  db.get(
+    `SELECT wallet, last_profit_at
+         FROM users
+         WHERE id = ?`,
+
+    [userId],
+
+    (err, user) => {
+      // خطای دیتابیس
+      if (err) {
+        return callback(err);
+      }
+
+      // کاربر پیدا نشد
+      if (!user) {
+        return callback(null);
+      }
+
+      const now = Date.now();
+
+      const lastProfitTime = new Date(user.last_profit_at).getTime();
+
+      // 24 ساعت به میلی‌ثانیه
+      const ONE_DAY = 24 * 60 * 60 * 1000;
+
+      // چند روز کامل گذشته؟
+      const completedDays = Math.floor((now - lastProfitTime) / ONE_DAY);
+
+      // هنوز 24 ساعت کامل نشده
+      if (completedDays <= 0) {
+        return callback(null);
+      }
+
+      let wallet = Number(user.wallet) || 0;
+
+      // برای هر 24 ساعت، 2.5 درصد سود
+      for (let i = 0; i < completedDays; i++) {
+        wallet = wallet + wallet * 0.025;
+      }
+
+      // زمان آخرین سود
+      const newProfitTime = new Date(
+        lastProfitTime + completedDays * ONE_DAY,
+      ).toISOString();
+
+      // ذخیره موجودی جدید در دیتابیس
+      db.run(
+        `UPDATE users
+                 SET wallet = ?,
+                     last_profit_at = ?
+                 WHERE id = ?`,
+
+        [wallet, newProfitTime, userId],
+
+        (updateErr) => {
+          if (updateErr) {
+            return callback(updateErr);
+          }
+
+          callback(null);
+        },
+      );
+    },
+  );
+}
+
 // =======================
 // ساخت کد اختصاصی
 // =======================
@@ -45,6 +116,9 @@ exports.register = async (req, res) => {
 
     const myInviteCode = generateCode();
 
+    // زمان شروع محاسبه سود روزانه
+    const lastProfitAt = new Date().toISOString();
+
     // =======================
     // بررسی کد دعوت
     // =======================
@@ -85,9 +159,10 @@ exports.register = async (req, res) => {
                 password,
                 phone,
                 invite_code,
-                my_invite_code
+                my_invite_code,
+                last_profit_at
             )
-            VALUES (?,?,?,?,?,?)`,
+            VALUES (?,?,?,?,?,?,?)`,
 
       [
         userCode,
@@ -102,6 +177,8 @@ exports.register = async (req, res) => {
         // inviteCode || "",
 
         myInviteCode,
+
+        lastProfitAt
       ],
 
       function (err) {
@@ -223,6 +300,79 @@ exports.login = (req, res) => {
 
 // ================= LOGIN =================
 
+// ==========================================
+// دریافت اطلاعات پروفایل + محاسبه سود روزانه
+// ==========================================
+
+exports.profile = (req, res) => {
+  // بررسی ورود کاربر
+  if (!req.session.user) {
+    return res.json({
+      success: false,
+      message: "ابتدا وارد شوید.",
+    });
+  }
+
+  // شناسه کاربر فعلی
+  const userId = req.session.user.id;
+
+  // اول سود روزانه را بررسی و ذخیره می‌کنیم
+  updateDailyProfit(userId, (profitErr) => {
+    // اگر محاسبه سود خطا داد
+    if (profitErr) {
+      console.error("Daily profit error:", profitErr.message);
+
+      return res.status(500).json({
+        success: false,
+        message: "خطا در محاسبه سود روزانه",
+      });
+    }
+
+    // بعد از محاسبه سود،
+    // اطلاعات جدید کاربر را از دیتابیس می‌گیریم
+    db.get(
+      `SELECT
+                id,
+                username,
+                phone,
+                wallet,
+                role,
+                user_code,
+                my_invite_code,
+                created_at
+            FROM users
+            WHERE id = ?`,
+
+      [userId],
+
+      (err, user) => {
+        // خطای دیتابیس
+        if (err) {
+          return res.status(500).json({
+            success: false,
+            message: err.message,
+          });
+        }
+
+        // کاربر پیدا نشد
+        if (!user) {
+          return res.json({
+            success: false,
+            message: "کاربر پیدا نشد.",
+          });
+        }
+
+        // ارسال اطلاعات کاربر
+        return res.json({
+          success: true,
+
+          user: user,
+        });
+      },
+    );
+  });
+};
+
 exports.login = (req, res) => {
   const { username, userCode } = req.body;
 
@@ -296,7 +446,57 @@ exports.login = (req, res) => {
 // دریافت اطلاعات پروفایل
 // ==========================
 
-exports.profile = (req, res) => {
+// exports.profile = (req, res) => {
+//   if (!req.session.user) {
+//     return res.json({
+//       success: false,
+//       message: "ابتدا وارد شوید.",
+//     });
+//   }
+
+//   db.get(
+//     `SELECT
+//             id,
+//             username,
+//             phone,
+//             wallet,
+//             role,
+//             user_code,
+//             my_invite_code
+//         FROM users
+//         WHERE id = ?`,
+
+//     [req.session.user.id],
+
+//     (err, user) => {
+//       if (err) {
+//         return res.json({
+//           success: false,
+//           message: err.message,
+//         });
+//       }
+
+//       if (!user) {
+//         return res.json({
+//           success: false,
+//           message: "کاربر پیدا نشد.",
+//         });
+//       }
+
+//       res.json({
+//         success: true,
+
+//         user,
+//       });
+//     },
+//   );
+// };
+
+// ==========================
+// تعداد زیرمجموعه‌های کاربر
+// ==========================
+
+exports.inviteStats = (req, res) => {
   if (!req.session.user) {
     return res.json({
       success: false,
@@ -305,22 +505,15 @@ exports.profile = (req, res) => {
   }
 
   db.get(
-    `SELECT
-            id,
-            username,
-            phone,
-            wallet,
-            role,
-            user_code,
-            my_invite_code
-        FROM users
-        WHERE id = ?`,
+    `SELECT my_invite_code
+         FROM users
+         WHERE id = ?`,
 
     [req.session.user.id],
 
     (err, user) => {
       if (err) {
-        return res.json({
+        return res.status(500).json({
           success: false,
           message: err.message,
         });
@@ -333,94 +526,30 @@ exports.profile = (req, res) => {
         });
       }
 
-      res.json({
-        success: true,
-
-        user,
-      });
-    },
-  );
-};
-
-
-// ==========================
-// تعداد زیرمجموعه‌های کاربر
-// ==========================
-
-exports.inviteStats = (req, res) => {
-
-    if (!req.session.user) {
-
-        return res.json({
-            success: false,
-            message: "ابتدا وارد شوید."
-        });
-
-    }
-
-    db.get(
-
-        `SELECT my_invite_code
-         FROM users
-         WHERE id = ?`,
-
-        [req.session.user.id],
-
-        (err, user) => {
-
-            if (err) {
-
-                return res.status(500).json({
-                    success: false,
-                    message: err.message
-                });
-
-            }
-
-            if (!user) {
-
-                return res.json({
-                    success: false,
-                    message: "کاربر پیدا نشد."
-                });
-
-            }
-
-            db.get(
-
-                `SELECT COUNT(*) AS total
+      db.get(
+        `SELECT COUNT(*) AS total
                  FROM users
                  WHERE invite_code = ?`,
 
-                [user.my_invite_code],
+        [user.my_invite_code],
 
-                (err, result) => {
+        (err, result) => {
+          if (err) {
+            return res.status(500).json({
+              success: false,
+              message: err.message,
+            });
+          }
 
-                    if (err) {
+          return res.json({
+            success: true,
 
-                        return res.status(500).json({
-                            success: false,
-                            message: err.message
-                        });
+            inviteCode: user.my_invite_code,
 
-                    }
-
-                    return res.json({
-
-                        success: true,
-
-                        inviteCode: user.my_invite_code,
-
-                        totalInvited: result.total
-
-                    });
-
-                }
-
-            );
-
-        }
-
-    );
-
+            totalInvited: result.total,
+          });
+        },
+      );
+    },
+  );
 };

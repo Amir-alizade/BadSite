@@ -1334,3 +1334,198 @@ body {
     }
 
 }
+
+
+/* =========================================
+   LOTTERY COUNTDOWN
+========================================= */
+
+#lottery-timer {
+    width: min(80%, 900px);
+    margin: 25px auto 40px;
+
+    padding: 25px 20px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(12px);
+
+    text-align: center;
+
+    direction: rtl;
+}
+
+
+/* عنوان */
+
+.lottery-title {
+    margin-bottom: 20px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+/* جعبه های تایمر */
+
+.timer-boxes {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    direction: ltr;
+
+    gap: 12px;
+}
+
+
+/* هر عدد */
+
+.timer-item {
+    min-width: 90px;
+
+    padding: 14px 12px;
+
+    border-radius: 16px;
+
+    background: rgba(0, 0, 0, 0.28);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    box-shadow:
+        inset 0 0 20px rgba(255, 255, 255, 0.025);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+/* عدد */
+
+.timer-item span {
+    font-size: 34px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    color: #ffffff;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* عنوان روز / ساعت */
+
+.timer-item small {
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color: rgba(255, 255, 255, 0.65);
+}
+
+
+/* : */
+
+.timer-separator {
+    font-size: 30px;
+
+    font-weight: 800;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    padding-bottom: 20px;
+}
+
+
+/* وقتی تمام شد */
+
+#lottery-finished {
+    display: none;
+
+    margin-top: 18px;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    #lottery-timer {
+        width: 90%;
+
+        margin-top: 18px;
+
+        padding: 20px 10px;
+
+        border-radius: 18px;
+    }
+
+
+    .lottery-title {
+        font-size: 16px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .timer-boxes {
+        gap: 5px;
+    }
+
+
+    .timer-item {
+        min-width: 58px;
+
+        padding: 11px 6px;
+
+        border-radius: 12px;
+    }
+
+
+    .timer-item span {
+        font-size: 23px;
+    }
+
+
+    .timer-item small {
+        font-size: 9px;
+
+        margin-top: 6px;
+    }
+
+
+    .timer-separator {
+        font-size: 20px;
+
+        padding-bottom: 15px;
+    }
+
+}

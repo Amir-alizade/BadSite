@@ -24,7 +24,8 @@ db.serialize(() => {
             my_invite_code TEXT UNIQUE,
             wallet INTEGER DEFAULT 0,
             role TEXT DEFAULT 'user',
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            last_profit_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `);
 

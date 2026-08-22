@@ -2,6 +2,7 @@ let $ = document;
 let NotifIcone = $.getElementById("Notif");
 let Languege = $.getElementById("Languege");
 let Homeinheader = $.getElementById("Home");
+let Backup = $.getElementById("Backup");
 let More = $.getElementById("More");
 let Proph = $.getElementById("Proph");
 let Apps = $.getElementById("Apps");
@@ -17,6 +18,10 @@ let historyMoney = $.getElementById("givMoney");
 let add_Friends = $.getElementById("add-friends");
 let Help = $.getElementById("help");
 
+
+Backup.addEventListener('click', () => {
+    window.location.href = 'history/company-history.html'
+});
 
 Help.addEventListener('click', () => {
   alert('دوستان عزیزی که ثبت نام میکنید به قسمت پروفایل برید و قسمت بالا نوشته شده نام کابری و کد اختصاصی شما 7KPGC3EB9KV \n این شکلی هست این کد اختصاصی شما برای ورود دوباره هست و شما این کد رو باید کپی کنید و به همراه نام کاربری خود برای ورود استفاده کنیدوقتی یک بار ثبت نام کردید با این کد اختصاصی و نام کاربری به بخش از قبل حساب دارم وارد بشید نام کاربری و کد اختصاصی خود را وارد کنید و وارد سایت بشید در قسمت پرداخت هر مبلغی که میخواهید سرمایه گذاری کنید رو انتخاب کنید و به ادرس کیف پول واریز کنید و اسکرین شات بگیرید و داخل تلگرام به این ایدی \n @GREENSMAART \n بفرستید تایید و کیف پول سرمایه گذاری شما شارژ خواهد شد');
@@ -53,7 +58,7 @@ vip_3.addEventListener('click', () => {
 })
 
 sendMoney.addEventListener('click', () => {
-  alert('جهت برداشت سرمایه گذاری خود لینک کیف پول و مبلغ برداشتی خود را به این ایدی در تلگرام بفرستید تا مبلغ تتر به کیف پول شما اضافه شود \n @GREENSMAART');
+  alert('جهت برداشت سرمایه گذاری خود لینک کیف پول و مبلغ برداشتی خود را به این ایدی در تلگرام بفرستید تا مبلغ تتر به کیف پول شما اضافه شوجهت برداشت سرمایه گذاری خود بعد از 30 روز لینک کیف پول و مبلغ برداشتی خود را به این ایدی در تلگرام بفرستید تا مبلغ تتر به کیف پول شما اضافه شود \n\n @GREENSMAART');
 })
 
 userOption.addEventListener('click', () => {
@@ -433,3 +438,114 @@ setInterval(() => {
 
 }, 3000);
 
+
+
+
+
+// =========================================
+// تایمر 30 روزه قرعه کشی
+// =========================================
+
+const lotteryEndKey = "greensmart_lottery_end";
+
+let lotteryEndTime = localStorage.getItem(lotteryEndKey);
+
+
+// اگر قبلاً زمان ساخته نشده
+if (!lotteryEndTime) {
+
+    lotteryEndTime =
+        Date.now() + (30 * 24 * 60 * 60 * 1000);
+
+    localStorage.setItem(
+        lotteryEndKey,
+        lotteryEndTime
+    );
+}
+
+
+function updateLotteryTimer() {
+
+    const now = Date.now();
+
+    let remaining =
+        Number(lotteryEndTime) - now;
+
+
+    // =====================================
+    // پایان تایمر
+    // =====================================
+
+    if (remaining <= 0) {
+
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        const finished =
+            document.getElementById("lottery-finished");
+
+        if (finished) {
+            finished.style.display = "block";
+        }
+
+        return;
+    }
+
+
+    // =====================================
+    // محاسبه زمان
+    // =====================================
+
+    const totalSeconds =
+        Math.floor(remaining / 1000);
+
+
+    const days =
+        Math.floor(totalSeconds / 86400);
+
+
+    const hours =
+        Math.floor(
+            (totalSeconds % 86400) / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (totalSeconds % 3600) / 60
+        );
+
+
+    const seconds =
+        totalSeconds % 60;
+
+
+    // =====================================
+    // نمایش
+    // =====================================
+
+    document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+}
+
+
+// اجرای اولیه
+updateLotteryTimer();
+
+
+// بروزرسانی هر ثانیه
+setInterval(updateLotteryTimer, 1000);
